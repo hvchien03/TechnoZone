@@ -30,16 +30,10 @@ return [
     */
 
     'connections' => [
-        // 'mongodb' => [
-        //     'driver' => 'mongodb',
-        //     'dsn' => env('DB_URI', 'mongodb+srv://username:password@<atlas-cluster-uri>/myappdb?retryWrites=true&w=majority'),
-        //     'database' => 'TechnoZone',
-        // ],
-
         'mongodb' => [
-            'driver'   => 'mongodb',
-            'dsn'      => env('DB_URI', 'mongodb+srv://hoangvan13052003:*Hoang@2003*@cluster0.sgvsr.mongodb.net'),  // Sử dụng URI đầy đủ từ file .env
-            'database' => env('DB_DATABASE', 'TechnoZone'),
+            'driver' => 'mongodb',
+            'dsn' => env('DB_URI', 'mongodb+srv://username:password@<atlas-cluster-uri>/myappdb?retryWrites=true&w=majority'),
+            'database' => 'TechnoZone',
         ],
 
         'sqlite' => [
