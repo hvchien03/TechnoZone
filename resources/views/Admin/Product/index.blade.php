@@ -21,7 +21,8 @@
         <div class="grid grid-cols-1 gap-5">
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
                 <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.create') }}"
-                        class="hover:underline">Add new product</a></h2>
+                        class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Add
+                        new product</a></h2>
                 <div class="overflow-auto">
                     <table class="min-w-[640px] w-full product-table">
                         <thead>
