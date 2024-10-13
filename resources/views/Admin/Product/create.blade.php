@@ -10,7 +10,8 @@
                     <div class="h-20 bg-white dark:bg-dark dark:border-gray/20 ">
                         <label for="name" class="text-base font-semibold mb-4">Product name
                             @if ($errors->has('productName'))
-                                <span class="text-red-500 float-right">{{ $errors->first('productName') }}</span>
+                                <span
+                                    class="text-red-500 text-danger float-right">{{ $errors->first('productName') }}</span>
                             @endif
                         </label>
                         <div class="space-y-4">
@@ -22,7 +23,7 @@
                         <div class="w-1/2 pr-2">
                             <label for="price" class="text-base font-semibold mb-4">Price
                                 @if ($errors->has('price'))
-                                    <span class="text-red-500 float-right">{{ $errors->first('price') }}</span>
+                                    <span class="text-red-500 text-danger float-right">{{ $errors->first('price') }}</span>
                                 @endif
                             </label>
                             <div class="mt-2">
@@ -34,7 +35,8 @@
                             <div class="h-20">
                                 <label for="stock" class="text-base font-semibold mb-4">Stock
                                     @if ($errors->has('stock'))
-                                        <span class="text-red-500 float-right">{{ $errors->first('stock') }}</span>
+                                        <span
+                                            class="text-red-500 text-danger float-right">{{ $errors->first('stock') }}</span>
                                     @endif
                                 </label>
                                 <div class="mt-2">
@@ -49,7 +51,8 @@
                             <div class="h-20">
                                 <label for="file_upload" class="text-base font-semibold mb-4">Image
                                     @if ($errors->has('image'))
-                                        <span class="text-red-500 float-right">{{ $errors->first('image') }}</span>
+                                        <span
+                                            class="text-red-500 text-danger float-right">{{ $errors->first('image') }}</span>
                                     @endif
                                 </label>
                                 <div class="mt-2">
@@ -68,7 +71,8 @@
                         <div class="w-1/2 pl-2">
                             <label for="warrantyPeriod" class="text-base font-semibold mb-4">Warranty period
                                 @if ($errors->has('warrantyPeriod'))
-                                    <span class="text-red-500 float-right">{{ $errors->first('warrantyPeriod') }}</span>
+                                    <span
+                                        class="text-red-500 text-danger float-right">{{ $errors->first('warrantyPeriod') }}</span>
                                 @endif
                             </label>
                             <div class="mt-2">
@@ -82,7 +86,8 @@
                         <div class="w-1/2 pr-2">
                             <label for="brand_id" class="text-base font-semibold mb-4">Supplier
                                 @if ($errors->has('supplierId'))
-                                    <span class="text-red-500 float-right">{{ $errors->first('supplierId') }}</span>
+                                    <span
+                                        class="text-red-500 text-danger float-right">{{ $errors->first('supplierId') }}</span>
                                 @endif
                             </label>
                             <div class="mt-2">
@@ -98,7 +103,8 @@
                             <div class="h-20">
                                 <label for="category_id" class="text-base font-semibold mb-4">Category
                                     @if ($errors->has('categoryId'))
-                                        <span class="text-red-500 float-right">{{ $errors->first('categoryId') }}</span>
+                                        <span
+                                            class="text-red-500 text-danger float-right">{{ $errors->first('categoryId') }}</span>
                                     @endif
                                 </label>
                                 <div class="mt-2">
@@ -117,7 +123,8 @@
                     <div class="h-40">
                         <label for="configuration" class="text-base font-semibold mb-4">Configuration
                             @if ($errors->has('configuration'))
-                                <span class="text-red-500 float-right">{{ $errors->first('configuration') }}</span>
+                                <span
+                                    class="text-red-500 text-danger float-right">{{ $errors->first('configuration') }}</span>
                             @endif
                         </label>
                         <div class="mt-2">
@@ -128,7 +135,8 @@
                     <div class="h-40">
                         <label for="warrantyPolicy" class="text-base font-semibold mb-4">Warranty policy
                             @if ($errors->has('warrantyPolicy'))
-                                <span class="text-red-500 float-right">{{ $errors->first('warrantyPolicy') }}</span>
+                                <span
+                                    class="text-red-500 text-danger float-right">{{ $errors->first('warrantyPolicy') }}</span>
                             @endif
                         </label>
                         <div class="mt-2">

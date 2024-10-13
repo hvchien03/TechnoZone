@@ -37,7 +37,7 @@
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
-                                <tr>
+                                <tr id="product-{{ $product->id }}">
                                     <td>
                                         <div class="flex items-center gap-2.5">
                                             <img src="{{ asset('images_upload/' . $product->image) }}"
@@ -55,16 +55,68 @@
                                             class="bg-success text-white font-bold text-xs py-2 px-3 rounded-full">{{ $product->formaterPriceAttribute() }}</span>
                                     </td>
                                     <td>
-                                        <a href="" class="hover:underline px-1">Show</a>
-                                        <a href="" class="hover:underline px-1">Edit</a>
-                                        <a href="" class="hover:underline px-1">Delete</a>
+                                        <a href="" x-data="modals"
+                                            class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Show</a>
+                                        <a href="{{ route('products.update', ['id' => $product->id]) }}"
+                                            class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Edit</a>
+                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ $product->id }}')"
+                                            class="btn-delete hover:underline btn bg-danger border border-danger rounded-full text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
+                                            Delete
+                                        </a>
+
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteProduct(id);
+            }
+        });
+    }
+
+    function deleteProduct(id) {
+        $.ajax({
+            url: '{{ route('products.delete', ':id') }}'.replace(':id', id),
+            type: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}', // Include CSRF token for security
+            },
+            success: function(response) {
+                Swal.fire(
+                    'Deleted!',
+                    'Product has been deleted.',
+                    'success'
+                );
+                // Remove the product from the UI
+                $('#product-' + id).remove();
+            },
+            error: function(xhr, status, error) {
+                Swal.fire(
+                    'Error!',
+                    'Failed to delete product: ' + xhr.responseText,
+                    'error'
+                );
+            }
+        });
+    }
+</script>
