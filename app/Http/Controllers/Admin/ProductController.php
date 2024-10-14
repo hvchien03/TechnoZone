@@ -45,7 +45,9 @@ class ProductController extends Controller
     {
         if (request()->isMethod('get')) {
             $product = $this->productService->getProductById($id);
-            return view('admin.product.edit', compact('product'));
+            $cate = $this->categoryService->getAllCate();
+            $supp = $this->supplierService->getAllSupplier();
+            return view('Admin.Product.update', compact('product', 'cate', 'supp'));
         } else if (request()->isMethod('put')) {
             $request = app(ProductRequest::class);
             $data = $request->validated();
@@ -61,8 +63,19 @@ class ProductController extends Controller
     {
         try {
             $this->productService->deleteProduct($id);
+    
+            // Kiểm tra xem có phải là yêu cầu AJAX không
+            if (request()->ajax()) {
+                return response()->json(['success' => true, 'message' => 'Product deleted successfully!']);
+            }
+    
+            // Nếu không phải AJAX thì thực hiện redirect
             return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
         } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            }
+    
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

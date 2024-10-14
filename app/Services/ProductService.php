@@ -40,7 +40,12 @@ class ProductService
     public function updateProduct($id, $data)
     {
         $product = $this->getProductById($id);
+        // xử lý image
         $product->update($data);
+        $file_name = time() . '.' . $data['image']->getClientOriginalExtension();
+        $data['image']->move(public_path('images_upload'), $file_name);
+        $product->image = $file_name;
+        $product->save();
         return $product;
     }
 

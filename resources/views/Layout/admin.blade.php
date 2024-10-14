@@ -710,13 +710,17 @@
     <script src="{{ asset('assets/admin/assets/js/alpine-collaspe.min.js') }}"></script>
     <script src="{{ asset('assets/admin/assets/js/alpine-persist.min.js') }}"></script>
     <script src="{{ asset('assets/admin/assets/js/alpine.min.js') }}" defer></script>
-
     <!-- ApexCharts js -->
     <script src="{{ asset('assets/admin/assets/js/apexcharts.js') }}"></script>
     <script src="{{ asset('assets/admin/assets/js/apex-analytics.js') }}"></script>
 
     <!-- Custom js -->
     <script src="{{ asset('assets/admin/assets/js/custom.js') }}"></script>
+
+    {{-- js ajax --}}
+    <!-- Thêm jQuery từ CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
