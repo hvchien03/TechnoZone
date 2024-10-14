@@ -8,7 +8,7 @@ use MongoDB\Laravel\Eloquent\Model;
 class Cart extends Model //giỏ hàng
 {
     use HasFactory;
-    protected $collection = 'cart';
+    protected $table = 'cart';
     protected $connection = 'mongodb';
     protected $fillable = [
         'userId',

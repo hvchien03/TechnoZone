@@ -8,7 +8,7 @@ use MongoDB\Laravel\Eloquent\Model;
 class Order extends Model //đơn đặt hàng
 {
     use HasFactory;
-    protected $collection = 'order';
+    protected $table = 'order';
     protected $connection = 'mongodb';
     public $fillable = [
         'userId',

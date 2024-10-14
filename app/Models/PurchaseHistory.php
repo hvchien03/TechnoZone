@@ -8,7 +8,7 @@ use MongoDB\Laravel\Eloquent\Model;
 class PurchaseHistory extends Model //lịch sử mua hàng
 {
     use HasFactory;
-    protected $collection = 'purchasehistory';
+    protected $table = 'purchasehistory';
     protected $connection = 'mongodb';
     public $fillable = [
         'userId',

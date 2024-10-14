@@ -8,7 +8,7 @@ use MongoDB\Laravel\Eloquent\Model;
 class Warranty extends Model //bảo hành
 {
     use HasFactory;
-    protected $collection = 'warranty';
+    protected $table = 'warranty';
     protected $connection = 'mongodb';
     public $fillable = [
         'productId',

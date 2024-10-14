@@ -177,10 +177,8 @@
                                 </a>
                                 <ul x-cloak x-show="activeMenu === 'tabels'" x-collapse
                                     class="sub-menu flex flex-col gap-1">
-                                    <li><a href='#'>Basic Table</a></li>
-                                    <li><a href='#'>Data Table</a></li>
-                                    <li><a href='#'>Editable Table</a></li>
-                                    <li><a href='{{route('products.index')}}'>Product Table</a></li>
+                                    <li><a href='{{ route('products.index') }}'>Product Table</a></li>
+                                    <li><a href='{{ route('promotions.index') }}'>Promotion Table</a></li>
                                 </ul>
                             </li>
                             <li class="menu nav-item">
