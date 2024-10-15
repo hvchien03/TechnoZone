@@ -113,7 +113,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="{{ route('categorys.update', ['id' => $supplier->id]) }}"
+                                        <a href="{{ route('suppliers.update', ['id' => $supplier->id]) }}"
                                             class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Edit</a>
                                         <a href="javascript:void(0);" onclick="confirmDelete('{{ $supplier->id }}')"
                                             class="btn-delete hover:underline btn bg-danger border border-danger rounded-full text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
