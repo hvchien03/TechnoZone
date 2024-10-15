@@ -19,4 +19,27 @@ class CategoryService
     {
         return Category::all();
     }
+    public function createCategory($data)
+    {
+        $category = new Category();
+        $category->categoryName = $data['categoryName'];
+        $category->description = $data['description'] ?? null;
+        $category->save();
+        return $category;
+    }
+
+    public function updateCategory($id, $data)
+    {
+        $category = $this->getCateById($id);
+        $category->categoryName = $data['categoryName'];
+        $category->description = $data['description'] ?? null;
+        $category->save();
+        return $category;
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = $this->getCateById($id);
+        return $category->delete();
+    }
 }

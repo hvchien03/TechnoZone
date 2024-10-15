@@ -14,46 +14,38 @@
                                 fill="currentColor" />
                         </svg>
                     </li>
-                    <li>List Product</li>
+                    <li>List Supplier</li>
                 </ul>
             </div>
         </div>
         <div class="grid grid-cols-1 gap-5">
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
-                <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.create') }}"
+                <h2 class="text-base font-semibold mb-4"><a href="{{ route('suppliers.create') }}"
                         class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Add
-                        new product</a></h2>
+                        new Supplier</a></h2>
                 <div class="overflow-auto">
-                    <table class="min-w-[640px] w-full product-table">
+                    <table class="min-w-[640px] w-full supplier-table">
                         <thead>
                             <tr class="text-left">
-                                <th>product</th>
-                                <th>category</th>
                                 <th>supplier</th>
-                                <th>stock</th>
-                                <th>price</th>
+                                <th>hotline</th>
+                                <th>email</th>
                                 <th>action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
-                                <tr id="product-{{ $product->id }}">
+                            @foreach ($suppliers as $supplier)
+                                <tr id="supplier-{{ $supplier->id }}">
                                     <td>
                                         <div class="flex items-center gap-2.5">
-                                            <img src="{{ asset('images_upload/' . $product->image) }}"
-                                                class="w-[50px] rounded-full" alt="">
                                             <div class="flex-1 max-w-[300px] truncate">
-                                                <p class="line-clamp-1 truncate">{{ $product->productName }}</p>
-                                                <p class="text-gray">Id: #{{ $product->id }}</p>
+                                                <p class="line-clamp-1 truncate">{{ $supplier->supplierName }}</p>
+                                                <p class="text-gray">Id: #{{ $supplier->id }}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $product->Category->categoryName }}</td>
-                                    <td>{{ $product->Supplier->supplierName }}</td>
-                                    <td>{{ $product->stock }}</td>
-                                    <td><span
-                                            class="bg-success text-white font-bold text-xs py-2 px-3 rounded-full">{{ $product->formaterPriceAttribute() }}</span>
-                                    </td>
+                                    <td>{{ $supplier->hotline }}</td>
+                                    <td>{{ $supplier->email }}</td>
                                     <td>
                                         <a x-data="modals"
                                             class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">
@@ -67,7 +59,7 @@
                                                         <div
                                                             class="flex bg-white dark:bg-dark items-center border-b border-lightgray/10 dark:border-gray/20 justify-between px-5 py-3">
                                                             <h5 class="font-semibold text-lg text-black">
-                                                                {{ $product->productName }} </h5>
+                                                                {{ $supplier->supplierName }} </h5>
                                                             <button type="button" class="text-lightgray hover:text-primary"
                                                                 @click="toggle">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -80,54 +72,30 @@
                                                         </div>
                                                         <div class="p-5 space-y-4">
                                                             <div class="text-lightgray text-sm font-normal">
-                                                                <img src="{{ asset('images_upload/' . $product->image) }}"
-                                                                    alt="Product Image" class="mt-2 w-300 img-fluid">
+                                                                {{-- <img src="{{ asset('images_upload/' . $supplier->image) }}"
+                                                                    alt="supplier Image" class="mt-2 w-300 img-fluid"> --}}
                                                                 <table
-                                                                    class="min-w-[640px] w-full product-table table-striped">
+                                                                    class="min-w-[640px] w-full supplier-table table-striped">
                                                                     <tbody>
                                                                         <tr class="text-left">
-                                                                            <td>category</td>
+                                                                            <td>Hotline</td>
                                                                             <td>
                                                                                 <div class="flex items-center gap-2.5">
                                                                                     <p
-                                                                                        class="line-clamp-1 max-w-[200px] truncate">
-                                                                                        {{ $product->Category->categoryName }}
+                                                                                        class="line-clamp-1 max-w-[500px] truncate">
+                                                                                        {{ $supplier->hotline }}
                                                                                     </p>
                                                                                 </div>
                                                                             </td>
 
                                                                         </tr>
                                                                         <tr class="text-left">
-                                                                            <td>supplier</td>
+                                                                            <td>Email</td>
                                                                             <td>
                                                                                 <div class="flex items-center gap-2.5">
                                                                                     <p
-                                                                                        class="line-clamp-1 max-w-[200px] truncate">
-                                                                                        {{ $product->Supplier->supplierName }}
-                                                                                    </p>
-                                                                                </div>
-                                                                            </td>
-
-                                                                        </tr>
-                                                                        <tr class="text-left">
-                                                                            <td>stock</td>
-                                                                            <td>
-                                                                                <div class="flex items-center gap-2.5">
-                                                                                    <p
-                                                                                        class="line-clamp-1 max-w-[200px] truncate">
-                                                                                        {{ $product->stock }}</p>
-                                                                                </div>
-                                                                            </td>
-
-                                                                        </tr>
-                                                                        <tr class="text-left">
-                                                                            <td>price</td>
-                                                                            <td>
-                                                                                <div class="flex items-center gap-2.5">
-                                                                                    <p
-                                                                                        class="line-clamp-1 max-w-[200px] truncate">
-                                                                                        {{ $product->formaterPriceAttribute() }}
-                                                                                    </p>
+                                                                                        class="line-clamp-1 max-w-[500px] truncate">
+                                                                                        {{ $supplier->email }}</p>
                                                                                 </div>
                                                                             </td>
 
@@ -145,9 +113,9 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="{{ route('products.update', ['id' => $product->id]) }}"
+                                        <a href="{{ route('categorys.update', ['id' => $supplier->id]) }}"
                                             class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Edit</a>
-                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ $product->id }}')"
+                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ $supplier->id }}')"
                                             class="btn-delete hover:underline btn bg-danger border border-danger rounded-full text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
                                             Delete
                                         </a>
@@ -177,14 +145,14 @@
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteProduct(id);
+                deletesupplier(id);
             }
         });
     }
 
-    function deleteProduct(id) {
+    function deletesupplier(id) {
         $.ajax({
-            url: '{{ route('products.delete', ':id') }}'.replace(':id', id),
+            url: '{{ route('suppliers.delete', ':id') }}'.replace(':id', id),
             type: 'DELETE',
             data: {
                 _token: '{{ csrf_token() }}', // Include CSRF token for security
@@ -192,16 +160,16 @@
             success: function(response) {
                 Swal.fire(
                     'Deleted!',
-                    'Product has been deleted.',
+                    'supplier has been deleted.',
                     'success'
                 );
-                // Remove the product from the UI
-                $('#product-' + id).remove();
+                // Remove the supplier from the UI
+                $('#supplier-' + id).remove();
             },
             error: function(xhr, status, error) {
                 Swal.fire(
                     'Error!',
-                    'Failed to delete product: ' + xhr.responseText,
+                    'Failed to delete supplier: ' + xhr.responseText,
                     'error'
                 );
             }
