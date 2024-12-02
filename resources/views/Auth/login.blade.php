@@ -1,4 +1,5 @@
 @extends('layout.client')
+
 @section('content')
     <!-- breadcrumb-area start -->
     <div class="breadcrumb-area bg-grey">
@@ -15,7 +16,6 @@
     </div>
     <!-- breadcrumb-area end -->
 
-
     <!-- content-wraper start -->
     <div class="content-wraper" style="margin-bottom:100px">
         <div class="container">
@@ -24,11 +24,11 @@
                     <div class="login-register-wrapper">
                         <!-- login-register-tab-list start -->
                         <div class="login-register-tab-list nav">
-                            <a class="active" href="{{route('login')}}">
-                                <h4> login </h4>
+                            <a class="active" href="{{ route('login') }}">
+                                <h4> Login </h4>
                             </a>
-                            <a href="{{route('register')}}">
-                                <h4> register </h4>
+                            <a href="{{ route('register') }}">
+                                <h4> Register </h4>
                             </a>
                         </div>
                         <!-- login-register-tab-list end -->
@@ -36,14 +36,15 @@
                             <div id="lg1" class="tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="#" method="post">
+                                        <form action="{{ route('login') }}" method="POST">
+                                            @csrf  <!-- Bảo vệ khỏi tấn công CSRF -->
                                             <div class="login-input-box">
-                                                <input type="text" name="user-name" placeholder="User Name">
-                                                <input type="password" name="user-password" placeholder="Password">
+                                                <input type="email" name="email" placeholder="Email" required>
+                                                <input type="password" name="password" placeholder="Password" required>
                                             </div>
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" name="remember">
                                                     <label>Remember me</label>
                                                     <a href="#">Forgot Password?</a>
                                                 </div>
@@ -52,6 +53,17 @@
                                                 </div>
                                             </div>
                                         </form>
+
+                                        <!-- Hiển thị thông báo lỗi nếu có -->
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

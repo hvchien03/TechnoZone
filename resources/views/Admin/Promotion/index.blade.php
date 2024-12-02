@@ -6,7 +6,7 @@
             <div>
                 <ul class="flex flex-wrap items-center text-sm font-semibold space-x-2.5">
                     <li class="flex items-center space-x-2.5 text-gray hover:text-dark dark:hover:text-white duration-300">
-                        <a href="javaScript:;">Tables</a>
+                        <a href="javaScript:;">Quản trị</a>
                         <svg class="text-gray/50" width="8" height="10" viewBox="0 0 8 10" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.5"
@@ -14,24 +14,24 @@
                                 fill="currentColor" />
                         </svg>
                     </li>
-                    <li>List Promotion</li>
+                    <li>Danh sách chương trình giảm giá</li>
                 </ul>
             </div>
         </div>
         <div class="grid grid-cols-1 gap-5">
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
                 <h2 class="text-base font-semibold mb-4"><a href="{{ route('promotions.create') }}"
-                        class="hover:underline">Add new promotion</a></h2>
+                        class="hover:underline">Tạo chương trình giảm giá mới</a></h2>
                 <div class="overflow-auto">
                     <table class="min-w-[640px] w-full product-table">
                         <thead>
                             <tr class="text-left">
-                                <th>promotionName</th>
-                                <th>discount</th>
-                                <th>startDate</th>
-                                <th>endDate</th>
-                                <th>status</th>
-                                <th>action</th>
+                                <th>Chương trình khuyến mãi</th>
+                                <th>Phần trăm</th>
+                                <th>Ngày băt đầu</th>
+                                <th>Ngày kết thúc</th>
+                                <th>Trạng thái</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,9 +51,9 @@
                                     <td>{{ $promotion->status }}</td>
                                     <td>
                                         <a href="{{ route('promotions.show', $promotion->id) }}"
-                                            class="hover:underline px-1">Show</a>
+                                            class="hover:underline px-1">Chi tiết</a>
                                         <a href="{{ route('promotions.update', $promotion->id) }}"
-                                            class="hover:underline px-1">Edit</a>
+                                            class="hover:underline px-1">Sửa</a>
                                     </td>
                                 </tr>
                             @endforeach
