@@ -43,7 +43,7 @@
                             <div class="top-left-wrap">
                                 <ul class="phone-email-wrap">
                                     <li><i class="fa fa-phone"></i> (08)123 456 7890</li>
-                                    <li><i class="fa fa-envelope-open-o"></i> yourmail@domain.com</li>
+                                    <li><i class="fa fa-envelope-open-o"></i> technozone@gmail.com</li>
                                 </ul>
                                 {{-- <ul class="link-top">
                                     <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
@@ -76,28 +76,28 @@
                                     {{-- <li class="language list-inline-item">
                                         <div class="btn-group">
                                             <button class="dropdown-toggle"><img src="{{ asset('assets/client/images/icon/la-1.jpg') }}"
-                                                    alt=""> English <i class="fa fa-angle-down"></i></button>
-                                            <div class="dropdown-menu">
-                                                <ul>
-                                                    <li><a href="#"><img src="{{ asset('assets/client/images/icon/la-1.jpg') }}"
-                                                                alt=""> English</a></li>
-                                                    <li><a href="#"><img src="{{ asset('assets/client/images/icon/la-2.jpg') }}"
-                                                                alt=""> Français</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li> --}}
+                                    alt=""> English <i class="fa fa-angle-down"></i></button>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li><a href="#"><img src="{{ asset('assets/client/images/icon/la-1.jpg') }}"
+                                                        alt=""> English</a></li>
+                                            <li><a href="#"><img src="{{ asset('assets/client/images/icon/la-2.jpg') }}"
+                                                        alt=""> Français</a></li>
+                                        </ul>
+                                    </div>
+                            </div>
+                            </li> --}}
                                     <!-- Language End -->
                                     <!-- Sanguage Start -->
                                     <li class="setting-top list-inline-item">
                                         <div class="btn-group">
-                                            <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Setting
+                                            <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Tài khoản
                                                 <i class="fa fa-angle-down"></i></button>
                                             <div class="dropdown-menu">
                                                 <ul>
-                                                    <li><a href="{{ route('auth')}}">Tài khoản</a></li>
+                                                    <li><a href="{{ route('auth') }}">Thông tin người dùng</a></li>
                                                     <li><a href="#">Đơn hàng</a></li>
-                                                    <li><a href="{{ route('login')}}">Đăng nhập</a></li>
+                                                    <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -117,8 +117,10 @@
                         <div class="col-lg-2 col-4">
                             <!-- logo start -->
                             <div class="logo">
-                                <a href="{{ route('home') }}"><img
-                                        src="{{ asset('assets/client/images/logo/logo.png') }}" alt=""></a>
+                                <a href="{{ route('home') }}">
+                                    <h3>TECHNOZONE</h3>
+                                    {{-- <img src="{{ asset('assets/client/images/logo/logo.jpg') }}" alt=""> --}}
+                                </a>
                             </div>
                             <!-- logo end -->
                         </div>
@@ -129,7 +131,7 @@
                                     <ul>
                                         <li class="active"><a href="{{ route('home') }}">Trang chủ</a>
                                         </li>
-                                        <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
+                                        {{-- <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
                                                 <li><a href="{{ route('product') }}">Khám phá Mac</a>
                                                     <ul>
@@ -142,46 +144,17 @@
                                                         <li><a href="#">Màn hình</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="{{ route('product.show') }}">Products Details</a>
-                                                    <ul>
-                                                        <li><a href="#">Single Product Tab
-                                                                Left</a></li>
-                                                        <li><a href="#">Single
-                                                                Product Tab Right</a></li>
-                                                        <li><a href="#">Single Product
-                                                                Carousel</a></li>
-                                                        <li><a href="#">Single Product
-                                                                Gallery Left</a></li>
-                                                        <li><a href="#">Single Product
-                                                                Gallery Right</a></li>
-                                                        <li><a href="#">Single Product Sticky
-                                                                Left</a></li>
-                                                        <li><a href="#">Single Product
-                                                                Sticky Right</a></li>
-                                                    </ul>
-                                                </li>
                                             </ul>
-                                        </li>
-                                        <li><a href="shop.html">Page <i class="fa fa-angle-down"></i></a>
-                                            <ul class="mega-menu four-column-menu">
-                                                <li><a href="blog.html">Column two</a>
-                                                    <ul>
-                                                        <li><a href="wishlist.html">Wishlist Page</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Column Four</a>
-                                                    <ul>
-                                                        <li><a href="error404.html">Error 404</a></li>
-                                                        <li><a href="faq.html">FAQ</a></li>
-                                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="{{ route('blog') }}">Blog <i class="fa fa-angle-down"></i></a>
+                                        </li> --}}
+                                        <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub-menu">
-                                                <li><a href="{{ route('blog') }}">Blog Grid 2 Layout</a></li>
-                                                <li><a href="{{ route('blog.show') }}">Blog details</a></li>
+                                                <li><a href="#">MacBook Air</a></li>
+                                                <li><a href="#">MacBook Pro</a></li>
+                                                <li><a href="#">iMac</a></li>
+                                                <li><a href="#">Mac mini</a></li>
+                                                <li><a href="#">Mac Studio</a></li>
+                                                <li><a href="#">Mac Pro</a></li>
+                                                <li><a href="#">Màn hình</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('contact') }}">Liên hệ</a></li>
@@ -206,80 +179,17 @@
                                 <div class="shoping-cart">
                                     <div class="btn-group">
                                         <!-- Mini Cart Button start -->
-                                        <button class="dropdown-toggle"><i class="fa fa-shopping-cart"></i> Giỏ hàng
-                                            (2)</button>
+                                        <button class="dropdown-toggle">
+                                            <a href="{{ route('cart') }}">
+                                                <i class="fa fa-shopping-cart"></i> Giỏ
+                                                hàng
+                                            </a>
+                                        </button>
+
                                         <!-- Mini Cart button end -->
 
                                         <!-- Mini Cart wrap start -->
                                         <div class="dropdown-menu mini-cart-wrap">
-                                            <div class="shopping-cart-content">
-                                                <ul class="mini-cart-content">
-                                                    <!-- Mini-Cart-item start -->
-                                                    <li class="mini-cart-item">
-                                                        <div class="mini-cart-product-img">
-                                                            <a href="#"><img
-                                                                    src="{{ asset('assets/client/images/cart/1.jpg') }}"
-                                                                    alt=""></a>
-                                                            <span class="product-quantity">1x</span>
-                                                        </div>
-                                                        <div class="mini-cart-product-desc">
-                                                            <h3><a href="#">Printed Summer Dress</a></h3>
-                                                            <div class="price-box">
-                                                                <span class="new-price">$55.21</span>
-                                                            </div>
-                                                            <div class="size">
-                                                                Size: S
-                                                            </div>
-                                                        </div>
-                                                        <div class="remove-from-cart">
-                                                            <a href="#" title="Remove"><i
-                                                                    class="fa fa-trash"></i></a>
-                                                        </div>
-                                                    </li>
-                                                    <!-- Mini-Cart-item end -->
-
-                                                    <!-- Mini-Cart-item start -->
-                                                    <li class="mini-cart-item">
-                                                        <div class="mini-cart-product-img">
-                                                            <a href="#"><img
-                                                                    src="{{ asset('assets/client/images/cart/3.jpg') }}"
-                                                                    alt=""></a>
-                                                            <span class="product-quantity">1x</span>
-                                                        </div>
-                                                        <div class="mini-cart-product-desc">
-                                                            <h3><a href="#">Faded Sleeves T-shirt</a></h3>
-                                                            <div class="price-box">
-                                                                <span class="new-price">$72.21</span>
-                                                            </div>
-                                                            <div class="size">
-                                                                Size: M
-                                                            </div>
-                                                        </div>
-                                                        <div class="remove-from-cart">
-                                                            <a href="#" title="Remove"><i
-                                                                    class="fa fa-trash"></i></a>
-                                                        </div>
-                                                    </li>
-                                                    <!-- Mini-Cart-item end -->
-
-                                                    <li>
-                                                        <!-- shopping-cart-total start -->
-                                                        <div class="shopping-cart-total">
-                                                            <h4>Sub-Total : <span>$127.42</span></h4>
-                                                            <h4>Total : <span>$127.42</span></h4>
-                                                        </div>
-                                                        <!-- shopping-cart-total end -->
-                                                    </li>
-
-                                                    <li>
-                                                        <!-- shopping-cart-btn start -->
-                                                        <div class="shopping-cart-btn">
-                                                            <a href="checkout.html">Checkout</a>
-                                                        </div>
-                                                        <!-- shopping-cart-btn end -->
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </div>
                                         <!-- Mini Cart wrap End -->
                                     </div>
@@ -309,15 +219,15 @@
                             <!-- footer-info-area start -->
                             <div class="footer-info-area">
                                 <div class="footer-logo">
-                                    <a href="#"><img
-                                            src="{{ asset('assets/client/images/logo/logo_footer.png') }}"
-                                            alt=""></a>
+                                    <a href="#">
+                                        <h3 class="text-white">TECHNOZONE</h3>
+                                    </a>
                                 </div>
                                 <div class="desc_footer">
-                                    <p><i class="fa fa-home"></i> <span> 123 Main Street, Anytown, CA 12345 -
-                                            USA.</span> </p>
+                                    <p><i class="fa fa-home"></i> <span> 140 Lê Trọng Tấn, Phường Tây Thạnh, Quận Tân
+                                            Phú, TP.HCM.</span> </p>
                                     <p><i class="fa fa-phone"></i> <span> (0) 800 456 789</span> </p>
-                                    <p><i class="fa fa-envelope-open-o"></i> <span> contact@demoemail.com</span> </p>
+                                    <p><i class="fa fa-envelope-open-o"></i> <span> technozone@gmail.com</span> </p>
                                     <div class="link-follow-footer">
                                         <ul class="footer-social-share">
                                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -332,7 +242,7 @@
                             <!-- footer-info-area end -->
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <!-- footer-info-area start -->
                                     <div class="footer-info-area">
@@ -368,13 +278,13 @@
                                     </div>
                                     <!-- footer-info-area end -->
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <!-- footer-info-area start -->
                             <div class="footer-info-area">
                                 <div class="footer-title">
-                                    <h3>Join Our Newsletter Now </h3>
+                                    <h3>Tham gia để nhận được thông báo mới nhất </h3>
                                 </div>
                                 <div class="desc_footer">
                                     <div class="input-newsletter">
@@ -382,7 +292,8 @@
                                             placeholder="Your email address" type="text">
                                         <button class="btn-newsletter"><i class="fa fa-paper-plane-o"></i></button>
                                     </div>
-                                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                                    <p>Nhận email cập nhật về cửa hàng mới nhất và các ưu đãi đặc biệt của chúng tôi.
+                                    </p>
                                 </div>
                             </div>
                             <!-- footer-info-area end -->
@@ -391,24 +302,6 @@
                 </div>
             </div>
             <!-- footer-top end -->
-            <!-- footer-buttom start -->
-            <div class="footer-buttom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-7">
-                            <div class="copy-right">
-                                <p>Copyright 2021 <a href="#">Boyka</a>. All Rights Reserved</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-5">
-                            <div class="payment">
-                                <img src="{{ asset('assets/client/images/icon/1.png') }}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- footer-buttom start -->
         </footer>
         <!-- Footer Aare End -->
 

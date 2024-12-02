@@ -2,38 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ResgisterRequest;
+use Illuminate\Http\Request;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    protected $UserService;
-    public function __construct(UserService $_UserService)
+    protected $userService;
+
+    public function __construct(UserService $_userService)
     {
-        $this->UserService = $_UserService;
+        $this->userService = $_userService;
     }
-    public function index()
+
+    public function login(Request $request)
     {
-        return view('auth.index');
+        if ($request->isMethod('get')) {
+            return view('auth.login');
+        }
+        // Lấy thông tin đăng nhập từ request
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 'admin') {
+                return redirect()->intended(route('admin.home'));
+            }
+            return redirect()->intended(route('home'));
+        }
+        return back()->with('error', 'Email or password is incorrect');
     }
-    public function login()
+
+    public function register(Request $request)
     {
-        return view('auth.login');
-    }
-    public function register()
-    {
-        if (request()->isMethod('get')) {
+        if ($request->isMethod('get')) {
             return view('auth.register');
         }
-        $request = app(ResgisterRequest::class);
-        $data = $request->validated();
-        $user = $this->UserService->createUser($data);
-        return redirect()->route('login')->with('success', 'Register successfully!');
+
+        $request->validate([
+            'name' => [
+                'required',
+                'regex:/^[\pL\s]+$/u'
+            ],
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'phone' => 'required|numeric|digits:10',
+            'address' => 'required'
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'role' => 'user'
+        ]);
+        return redirect()->route('login');
     }
+
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('auth.login');
+        return redirect()->route('home');
     }
 }

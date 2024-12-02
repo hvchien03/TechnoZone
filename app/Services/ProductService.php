@@ -6,7 +6,7 @@ use App\Models\Product;
 
 class ProductService
 {
-    public function getProductById($id)
+    public function findProductById($id)
     {
         if ($id == null) {
             throw new \Exception('Id is required');
@@ -39,7 +39,7 @@ class ProductService
 
     public function updateProduct($id, $data)
     {
-        $product = $this->getProductById($id);
+        $product = $this->findProductById($id);
         // xử lý image
         $product->update($data);
         $file_name = time() . '.' . $data['image']->getClientOriginalExtension();
@@ -51,7 +51,7 @@ class ProductService
 
     public function deleteProduct($id)
     {
-        $product = $this->getProductById($id);
+        $product = $this->findProductById($id);
         return $product->delete();
     }
 

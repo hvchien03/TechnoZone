@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\SupplierController;
 
 //admin page
-Route::get('', [HomeController::class, 'index'])->name('admin.home');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.home');
 
 //products
 Route::prefix('products')->group(function () {

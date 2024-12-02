@@ -14,7 +14,7 @@
         - Common Classes
         - Section Padding
     02. Element
-        - Button Style 
+        - Button Style
         - Section Title Css
         - Breadcrumb Style
         - Paginatoin Css
@@ -173,7 +173,7 @@ ul {
   max-width: 1200px;
 }
 
-/*-- 
+/*--
     - Common Classes
 -----------------------------------------*/
 .fix {
@@ -220,7 +220,7 @@ ul {
   border-top: 1px solid #e5e5e5;
 }
 
-/*-- 
+/*--
     - Background color
 -----------------------------------------*/
 .bg-white {
@@ -239,14 +239,14 @@ ul {
   background: #1D1D1D;
 }
 
-/*-- 
+/*--
     - color
 -----------------------------------------*/
 .c-blue {
   color: #8a8f6a;
 }
 
-/*-- 
+/*--
     - Input Placeholder
 -----------------------------------------*/
 input:-moz-placeholder, textarea:-moz-placeholder {
@@ -269,8 +269,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-/*-- 
-    Scroll Up 
+/*--
+    Scroll Up
 -----------------------------------------*/
 #scrollUp {
   width: 40px;
@@ -298,7 +298,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
           animation-iteration-count: infinite;
 }
 
-/*-- 
+/*--
     - Main Wrapper
 -----------------------------------------*/
 .main-wrapper.header-transparent {
@@ -306,7 +306,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin: 0 !important;
 }
 
-/*-- 
+/*--
     - Section Padding
 -------------------------------------*/
 .section-ptb {
@@ -2711,8 +2711,8 @@ body.box-body {
   display: inline-block;
 }
 
-/*-- 
-   - service css 
+/*--
+   - service css
 -------------------------------*/
 .single-service-item {
   display: -webkit-box;
@@ -3274,7 +3274,7 @@ body.box-body {
   }
 }
 
-/*-- 
+/*--
     08. Mobile Menu Css
 -------------------------*/
 .mobile-menu {
@@ -5017,7 +5017,7 @@ body.box-body {
   margin-top: 5px;
 }
 
-/*-- 
+/*--
    15. Checkout Page Css
 ------------------------------*/
 .coupon-accordion h3 {
@@ -5910,7 +5910,7 @@ body.box-body {
   padding: 8px 30px;
 }
 
-/*--    
+/*--
     21. Error 404 Page Css
 ---------------------------*/
 .search-error-wrapper h1 {

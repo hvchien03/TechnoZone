@@ -9,17 +9,17 @@
                     <div class="space-y-[30px]">
                         <div class="flex items-center justify-between flex-wrap gap-5">
                             <div class="p-5 bg-gray/10 rounded-lg">
-                                <p class="font-semibold leading-none">Promotion #{{ $promotion->id }}</p>
+                                <p class="font-semibold leading-none">Mã #{{ $promotion->id }}</p>
                             </div>
                             <div class="flex sm:flex-row flex-col sm:items-center gap-5 flex-wrap sm:w-1/2 w-full">
                                 <div class="space-y-4 flex-1">
-                                    <label for="date1" class="text-sm">Start
+                                    <label for="date1" class="text-sm">Ngày bắt đầu
                                     </label>
                                     <input type="date" name="startDate" value="{{ $promotion->startDate }}" readonly
                                         class="form-input rounded-lg" placeholder="Date">
                                 </div>
                                 <div class="space-y-4 flex-1">
-                                    <label for="due1" class="text-sm">End
+                                    <label for="due1" class="text-sm">Ngày kết thúc
                                     </label>
                                     <input type="date" name="endDate" value="{{ $promotion->endDate }}" readonly
                                         class="form-input rounded-lg" placeholder="Date">
@@ -28,26 +28,26 @@
                         </div>
                         <div class="flex sm:flex-row flex-col sm:items-center gap-5 flex-wrap">
                             <div class="space-y-4 flex-1">
-                                <label for="promotionName" class="text-sm">Promotion name
+                                <label for="promotionName" class="text-sm">Khuyến mãi
                                 </label>
                                 <input id="promotionName" type="text" class="form-input rounded-lg" name="promotionName"
                                     readonly value="{{ $promotion->promotionName }}" placeholder="Harold Graves">
                             </div>
                             <div class="space-y-4 flex-1">
-                                <label class="text-sm">Discount
+                                <label class="text-sm">Phần trăm
                                 </label>
                                 <input type="text" class="form-input rounded-lg" placeholder="15%" name="discount"
                                     readonly value="{{ $promotion->discount }}">
                             </div>
                             <div class="space-y-4 flex-1">
-                                <label class="text-sm">Status
+                                <label class="text-sm">Trạng thái
                                 </label>
                                 <input type="text" class="form-input rounded-lg" name="status" readonly
                                     value="{{ $promotion->status }}">
                             </div>
                         </div>
                         <div class="space-y-4">
-                            <label class="text-sm">Desriptions
+                            <label class="text-sm">Chi tiết chương trình
                             </label>
                             <textarea rows="5" class="form-input h-auto rounded-lg resize-none" name="description" readonly
                                 placeholder="Your message...">{{ $promotion->description }}</textarea>
@@ -56,16 +56,16 @@
                         <div class="space-y-4">
                             <div
                                 class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
-                                <h2 class="text-base font-semibold mb-4">Products
+                                <h2 class="text-base font-semibold mb-4">Sản phẩm áp dụng</h2>
                                 </h2>
                                 <div class="overflow-auto">
                                     <table class="min-w-[640px] w-full product-table">
                                         <thead>
                                             <tr class="text-left">
                                                 <th>Id</th>
-                                                <th> product</th>
+                                                <th> Sản phẩm</th>
                                                 <th>
-                                                    price
+                                                    Giá
                                                     <svg width="10" height="6" class="inline-block"
                                                         viewBox="0 0 10 6" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@
                                                     </svg>
                                                 </th>
                                                 <th>
-                                                    category
+                                                    Loại
                                                     <svg width="10" height="6" class="inline-block"
                                                         viewBox="0 0 10 6" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@
                                                     </svg>
                                                 </th>
                                                 <th>
-                                                    supplier
+                                                    Nhà cung cấp
                                                     <svg width="10" height="6" class="inline-block"
                                                         viewBox="0 0 10 6" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +109,7 @@
                                                         </div>
                                                     </td>
                                                     <td><span
-                                                            class="bg-primary text-white font-bold text-sm py-1.5 px-3 rounded-full">{{ $product->formaterPriceAttribute() }}</span>
+                                                            class="font-bold text-sm py-1.5 px-3 rounded-full">{{ $product->formaterPriceAttribute() }}</span>
                                                     </td>
                                                     <td>
                                                         <div class="flex items-center gap-2">
@@ -129,7 +129,7 @@
                             <div class="flex-1">
                                 <a href="{{ route('promotions.index') }}">
                                     <button type="button"
-                                        class="btn bg-gray/10 border border-gray/10 rounded-md transition-all duration-300 hover:bg-gray/[0.15] hover:border-gray/[0.15]">Back</button>
+                                        class="btn bg-gray/10 border border-gray/10 rounded-md transition-all duration-300 hover:bg-gray/[0.15] hover:border-gray/[0.15]">Trở về</button>
                                 </a>
                                 <a href="{{ route('promotions.delete', $promotion->id) }}">
                                     <button
@@ -143,7 +143,7 @@
                                                 toastTimer = setTimeout(() => toastVisible = false, 3000);
                                             }
                                             ">
-                                        Delete
+                                        Huỷ
                                     </button>
                                 </a>
                             </div>
