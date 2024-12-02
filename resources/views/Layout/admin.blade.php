@@ -110,6 +110,10 @@
                                     class="sub-menu flex flex-col gap-1">
                                     <li><a href='{{ route('products.index') }}'>Sản phẩm</a></li>
                                     <li><a href='{{ route('promotions.index') }}'>Giảm giá</a></li>
+                                    {{-- <li><a href='{{ route('products.index') }}'>Product Table</a></li>
+                                    <li><a href='{{ route('suppliers.index') }}'>Supplier Table</a></li>
+                                    <li><a href='{{ route('categories.index') }}'>Category Table</a></li>
+                                    <li><a href='{{ route('promotions.index') }}'>Promotion Table</a></li> --}}
                                 </ul>
                             </li>
                             <li class="menu nav-item">
