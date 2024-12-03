@@ -21,6 +21,7 @@
 
     <!-- Style Css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/assets/css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 
     <title>@yield('title')</title>
 
@@ -128,7 +129,7 @@
                                             <ellipse cx="12" cy="17" rx="7" ry="4"
                                                 fill="currentColor" />
                                         </svg>
-                                        <span class="pl-1.5">Người dùng</span>
+                                        <span class="pl-1.5">Khách hàng</span>
                                     </div>
                                     <div class="w-4 h-4 flex items-center justify-center dropdown-icon"
                                         :class="{ '!rotate-180': activeMenu === 'userprofile' }">
@@ -141,7 +142,8 @@
                                 </a>
                                 <ul x-cloak x-show="activeMenu === 'userprofile'" x-collapse
                                     class="sub-menu flex flex-col gap-1">
-                                    <li><a href='settings.html'>Profile Setting</a></li>
+                                    <li><a href='{{ route('customer.index') }}'>Danh sách</a></li>
+                                    <li><a href='{{ route('customer.create') }}'>Thêm mới</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -556,11 +558,12 @@
 
     <!-- Custom js -->
     <script src="{{ asset('assets/admin/assets/js/custom.js') }}"></script>
-
     {{-- js ajax --}}
     <!-- Thêm jQuery từ CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </body>
 
 </html>

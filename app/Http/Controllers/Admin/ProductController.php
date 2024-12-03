@@ -63,19 +63,19 @@ class ProductController extends Controller
     {
         try {
             $this->productService->deleteProduct($id);
-    
+
             // Kiểm tra xem có phải là yêu cầu AJAX không
             if (request()->ajax()) {
                 return response()->json(['success' => true, 'message' => 'Product deleted successfully!']);
             }
-    
+
             // Nếu không phải AJAX thì thực hiện redirect
             return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
         } catch (\Exception $e) {
             if (request()->ajax()) {
                 return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
             }
-    
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

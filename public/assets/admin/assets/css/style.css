@@ -2,7 +2,7 @@
 
 /*
 -------------------------------------------------------------------------
-* Template Name    : DashHub - Tailwind CSS Admin & Dashboard Template  * 
+* Template Name    : DashHub - Tailwind CSS Admin & Dashboard Template  *
 * Author           : Webonzer                                           *
 * Version          : 1.0.0                                              *
 * Created          : June 2023                                          *
@@ -5355,3 +5355,88 @@ table .invoice-table tr td:last-child{
   }
 }
 
+.suggestions {
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 99999;
+    display: none;
+    margin-top: 3px;
+    border: 1px solid #e5e7eb;
+}
+
+.suggestion-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:before {
+    content: "📍";
+    margin-right: 10px;
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.suggestion-item:hover {
+    background: #f3f4f6;
+    color: #000;
+    padding-left: 24px;
+}
+
+.suggestion-item:hover:before {
+    transform: scale(1.2);
+}
+
+.suggestion-item:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.suggestion-item:hover:after {
+    transform: scaleY(1);
+}
+
+.address-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.suggestions::-webkit-scrollbar {
+    width: 8px;
+}
+
+.suggestions::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 8px;
+}
+
+.suggestions::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

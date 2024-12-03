@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\CustomerController;
 
 //admin page
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.home');
@@ -40,4 +41,11 @@ Route::prefix('promotions')->group(function () {
     Route::match(['get', 'post'], 'create', [PromotionController::class, 'create'])->name('promotions.create');
     Route::match(['get', 'patch'], 'update/{id}', [PromotionController::class, 'update'])->name('promotions.update');
     Route::get('delete/{id}', [PromotionController::class, 'delete'])->name('promotions.delete');
+});
+
+Route::prefix('customers')->group(function () {
+    Route::get('', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('create', [CustomerController::class, 'create'])->name('customer.create');
+    Route::post('update', [CustomerController::class, 'update'])->name('customer.update');
+    Route::post('store', [CustomerController::class, 'store'])->name('customer.store');
 });
