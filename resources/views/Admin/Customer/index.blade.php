@@ -1,0 +1,265 @@
+@extends('layout.admin')
+@section('title', 'Quản lý khách hàng')
+@section('content')
+<div class="flex flex-col gap-5 min-h-[calc(100vh-188px)] sm:min-h-[calc(100vh-204px)]">
+    <div class="grid grid-cols-1">
+        <div>
+            <ul class="flex flex-wrap items-center text-sm font-semibold space-x-2.5">
+                <li class="flex items-center space-x-2.5 text-gray hover:text-dark dark:hover:text-white duration-300">
+                    <a href="javaScript:;">Trang chủ</a>
+                    <svg class="text-gray/50" width="8" height="10" viewBox="0 0 8 10" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5"
+                            d="M1.33644 0H4.19579C4.60351 0 5.11318 0.264045 5.32903 0.589888L7.83532 4.3427C8.07516 4.70787 8.05119 5.2809 7.77538 5.6236L4.66949 9.5C4.44764 9.77528 3.96795 10 3.6022 10H1.33644C0.287156 10 -0.348385 8.92135 0.203241 8.08427L1.86409 5.59551C2.08594 5.26405 2.08594 4.72472 1.86409 4.39326L0.203241 1.90449C-0.348385 1.07865 0.293152 0 1.33644 0Z"
+                            fill="currentColor" />
+                    </svg>
+                </li>
+                <li>Danh sách khách hàng</li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 gap-5">
+        <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-base font-semibold">
+                    <a href="{{ route('customer.create') }}"
+                        class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">
+                        Thêm khách hàng mới
+                    </a>
+                </h2>
+                <div class="flex gap-4">
+                    <div class="relative">
+                        <input type="text" id="searchCustomer"
+                               placeholder="Tìm kiếm khách hàng..."
+                               class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-auto">
+                <table class="min-w-[640px] w-full product-table">
+                    <thead>
+                        <tr class="text-left">
+                            <th>STT</th>
+                            <th>Họ tên</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody">
+                        @foreach ($customers as $customer)
+                        <tr id="customer-{{ $customer->id }}" class="customer-row">
+                            <td>{{ $loop->iteration }}</td>
+                            <td class="customer-name">{{ $customer->name }}</td>
+                            <td class="customer-phone">{{ $customer->phone }}</td>
+                            <td>{{ $customer->email }}</td>
+                            <td>{{ $customer->address }}</td>
+                            <td>
+                                <a x-data="modals"
+                                    class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">
+                                    <button type="button" @click="toggle" onclick="clearErrors()">Cập nhật</button>
+                                    <div class="fixed inset-0 bg-dark/90 dark:bg-white/5 backdrop-blur-sm z-[99999] hidden overflow-y-auto"
+                                        :class="open && '!block'">
+                                        <div class="flex items-center justify-center min-h-screen px-4"
+                                            @click.self="open = false">
+                                            <div x-show="open" x-transition x-transition.duration.300
+                                                class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 rounded-lg overflow-hidden my-8 w-full max-w-lg max-h-[90vh]">
+                                                <div
+                                                    class="flex bg-white dark:bg-dark items-center border-b border-lightgray/10 dark:border-gray/20 justify-between px-5 py-3">
+                                                    <h5 class="font-semibold text-lg text-black">Cập nhật khách hàng</h5>
+                                                    <button type="button" class="text-lightgray hover:text-primary"
+                                                        @click="toggle">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                            class="w-5 h-5">
+                                                            <path
+                                                                d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z"
+                                                                fill="currentColor"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="p-5 space-y-4 overflow-y-auto">
+                                                    <div class="text-lightgray text-sm font-normal">
+                                                        <form id="customerForm" action="{{ route('customer.update') }}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="customer_id" value="{{ $customer->_id }}">
+                                                            <div class="grid gap-4">
+                                                                <div class="grid grid-cols-3 items-center">
+                                                                    <label class="font-medium">Họ tên:</label>
+                                                                    <div class="col-span-2">
+                                                                        <input type="text" value="{{ $customer->name }}" class="w-full px-3 py-2 border rounded-md" name="name">
+                                                                        <span id="nameError" class="text-red-500 text-sm mt-1"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="grid grid-cols-3 items-center">
+                                                                    <label class="font-medium">Số điện thoại:</label>
+                                                                    <div class="col-span-2">
+                                                                        <input type="text"
+                                                                               value="{{ $customer->phone }}"
+                                                                               class="w-full px-3 py-2 border rounded-md" name="phone">
+                                                                    </div>
+                                                                    <small id="phoneError" class="text-sm mt-1" style="color: red;"></small>
+                                                                </div>
+
+                                                                <div class="grid grid-cols-3 items-center">
+                                                                    <label class="font-medium">Email:</label>
+                                                                    <div class="col-span-2">
+                                                                        <input type="email"
+                                                                               value="{{ $customer->email }}"
+                                                                               class="w-full px-3 py-2 border rounded-md" name="email">
+                                                                        <span id="emailError" class="text-red-500 text-sm mt-1"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="grid grid-cols-3 items-start">
+                                                                    <label class="font-medium pt-2">Địa chỉ:</label>
+                                                                    <div class="col-span-2 relative">
+                                                                        <input type="text" class="w-full px-3 py-2 border rounded-md resize-none" name="address" id="address" value="{{ $customer->address }}" autocomplete="off">
+                                                                        <div id="suggestions" class="suggestions"></div>
+                                                                        <span id="addressError" class="text-red-500 text-sm mt-1"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex justify-end mt-6">
+                                                                <button type="submit"
+                                                                        class="btn bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
+                                                                    Lưu thay đổi
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@push('scripts')
+<script>
+    function clearErrors() {
+        $('#nameError').text('');
+        $('#phoneError').text('');
+        $('#emailError').text('');
+        $('#addressError').text('');
+    }
+
+    $(document).ready(function() {
+        $('#searchCustomer').on('input', function() {
+            var searchText = $(this).val().toLowerCase();
+
+            var isNumber = /^\d+$/.test(searchText);
+
+            $('.customer-row').each(function() {
+                var name = $(this).find('.customer-name').text().toLowerCase();
+                var phone = $(this).find('.customer-phone').text().toLowerCase();
+
+                if (searchText === '') {
+                    $(this).show();
+                } else if (isNumber) {
+                    if (phone.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                } else {
+                    if (name.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                }
+            });
+        });
+
+        $('#customerForm').on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                success: function(response) {
+                    toastr.success('Cập nhật thành công');
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                },
+                error: function(xhr, status, error) {
+                    if(xhr.status === 422) {
+                        var response = JSON.parse(xhr.responseText);
+                        $('#nameError').text(response.errors.name);
+                        $('#phoneError').text(response.errors.phone);
+                        $('#emailError').text(response.errors.email);
+                        $('#addressError').text(response.errors.address);
+                    }
+                }
+            });
+        });
+    });
+
+    const addressKey = '{{ $addressKey }}';
+    const addressInput = document.getElementById('address');
+    const suggestionsContainer = document.getElementById('suggestions');
+    let sessionToken = crypto.randomUUID();
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    const debouncedSearch = debounce((query) => {
+        if (query.length < 2) {
+            suggestionsContainer.style.display = 'none';
+            return;
+        }
+
+
+        fetch(`https://rsapi.goong.io/Place/AutoComplete?api_key=${addressKey}&input=${encodeURIComponent(query)}&sessiontoken=${sessionToken}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'OK') {
+                    suggestionsContainer.innerHTML = '';
+                    suggestionsContainer.style.display = 'block';
+
+                    data.predictions.forEach(prediction => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        div.textContent = prediction.description;
+                        div.addEventListener('click', () => {
+                            addressInput.value = prediction.description;
+                            suggestionsContainer.style.display = 'none';
+                        });
+                        suggestionsContainer.appendChild(div);
+                    });
+                }
+            })
+            .catch(error => console.error('Lỗi:', error));
+    }, 300);
+
+    addressInput.addEventListener('input', (e) => debouncedSearch(e.target.value));
+
+    document.addEventListener('click', function (e) {
+        if (!suggestionsContainer.contains(e.target) && e.target !== addressInput) {
+            suggestionsContainer.style.display = 'none';
+        }
+    });
+</script>
+@endpush

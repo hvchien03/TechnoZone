@@ -42,12 +42,12 @@ class User extends Authenticatable //người dùng
     {
         return $this->hasMany(PurchaseHistory::class, 'userId', '_id');
     }
-    
+
     public function cart()
     {
         return $this->hasOne(Cart::class, 'userId', '_id');
     }
-    
+
     public function order()
     {
         return $this->hasMany(Order::class, 'userId', '_id');
