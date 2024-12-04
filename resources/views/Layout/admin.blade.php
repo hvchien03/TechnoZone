@@ -146,6 +146,35 @@
                                     <li><a href='{{ route('customer.create') }}'>Thêm mới</a></li>
                                 </ul>
                             </li>
+                            <li class="menu nav-item">
+                                <a href="javaScript:;" class="nav-link group items-center justify-between"
+                                    :class="{ 'active': activeMenu === 'requests' }"
+                                    @click="activeMenu === 'requests' ? activeMenu = null : activeMenu = 'requests'">
+                                    <div class="flex items-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <circle opacity="0.3" cx="12" cy="6" r="4"
+                                                fill="currentColor" />
+                                            <ellipse cx="12" cy="17" rx="7" ry="4"
+                                                fill="currentColor" />
+                                        </svg>
+                                        <span class="pl-1.5">Đơn yêu cầu</span>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center dropdown-icon"
+                                        :class="{ '!rotate-180': activeMenu === 'requests' }">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
+                                            <path
+                                                d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                    </div>
+                                </a>
+                                <ul x-cloak x-show="activeMenu === 'requests'" x-collapse
+                                    class="sub-menu flex flex-col gap-1">
+                                    <li><a href='{{ route('admin.service.index') }}'>Danh sách</a></li>
+                                    <li><a href='{{ route('admin.service.create') }}'>Thêm mới</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>

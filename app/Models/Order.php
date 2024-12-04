@@ -16,21 +16,25 @@ class Order extends Model //đơn đặt hàng
         // cấu trúc trong orders [
         //                          {
         //                              orderId,
-        //                              name, 
-        //                              phone, 
-        //                              address, 
+        //                              name,
+        //                              phone,
+        //                              address,
         //                              products: [
         //                                              {productId, name, quantity, price}, {}, {}, ...
-        //                                        ], 
-        //                              date, 
-        //                              total, 
-        //                              deliveryStatus, 
+        //                                        ],
+        //                              date,
+        //                              total,
+        //                              deliveryStatus,
         //                              paymentStatus
-        //                           }, {}, {}, ...  
+        //                           }, {}, {}, ...
         //]
     ];
     public function user()
     {
         return $this->belongsTo(User::class, 'userId', '_id');
+    }
+    public function requests()
+    {
+        return $this->hasMany(Request::class, 'order.orderId');
     }
 }

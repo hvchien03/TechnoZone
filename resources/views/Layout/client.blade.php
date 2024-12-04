@@ -71,7 +71,8 @@
                                             </div>
                                         </div>
                                     </li> --}}
-                                    <!-- Currency End -->
+                                    <!
+                                    -- Currency End -->
                                     <!-- Language Start -->
                                     {{-- <li class="language list-inline-item">
                                         <div class="btn-group">
@@ -158,6 +159,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('contact') }}">Liên hệ</a></li>
+                                        <li><a href="">Dịch vụ</a></li>
                                     </ul>
                                 </nav>
                             </div>

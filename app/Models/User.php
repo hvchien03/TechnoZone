@@ -53,6 +53,11 @@ class User extends Authenticatable //người dùng
         return $this->hasMany(Order::class, 'userId', '_id');
     }
 
+    public function request()
+    {
+        return $this->hasMany(Request::class, 'userId', '_id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
