@@ -12,11 +12,11 @@ class CategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // Cấp quyền cho admin sử dụng CategoryRequest, ngược lại không cho phép
-        // if (Auth::user()->role === 'admin') {
-        //     return true;
-        // }
-        // return false;
+        //Cấp quyền cho admin sử dụng CategoryRequest, ngược lại không cho phép
+        if (Auth::user()->role === 'admin') {
+            return true;
+        }
+        return false;
         // return true trước để làm mẫu, sau khi đăng nhập thì sửa lại cho phù hợp
         return true;
     }

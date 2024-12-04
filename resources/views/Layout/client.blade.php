@@ -27,6 +27,8 @@
 
     <!-- Modernizer JS -->
     <script src="{{ asset('assets/client/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    
 </head>
 
 <body>
@@ -129,9 +131,9 @@
                                     <ul>
                                         <li class="active"><a href="{{ route('home') }}">Trang chủ</a>
                                         </li>
-                                        <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
+                                        <li><a href="#">Mac <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
-                                                <li><a href="{{ route('product') }}">Khám phá Mac</a>
+                                                <li><a href="#">Khám phá Mac</a>
                                                     <ul>
                                                         <li><a href="#">MacBook Air</a></li>
                                                         <li><a href="#">MacBook Pro</a></li>
@@ -142,7 +144,7 @@
                                                         <li><a href="#">Màn hình</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="{{ route('product.show') }}">Products Details</a>
+                                                <li><a href="#">Products Details</a>
                                                     <ul>
                                                         <li><a href="#">Single Product Tab
                                                                 Left</a></li>
@@ -540,7 +542,8 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/client/js/main.js') }}"></script>
 
-
+    <script src="{{ asset('assets/client/js/vendor/jquery-3.5.1.min.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

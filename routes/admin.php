@@ -6,17 +6,10 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\OrderController;
 
 //admin page
 Route::get('', [HomeController::class, 'index'])->name('admin.home');
-
-//products
-Route::prefix('products')->group(function () {
-    Route::get('', [ProductController::class, 'index'])->name('products.index');
-    Route::match(['get', 'post'], 'create', [ProductController::class, 'create'])->name('products.create');
-    Route::match(['get', 'put'], 'update/{id}', [ProductController::class, 'update'])->name('products.update');
-    Route::delete('delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
-});
 
 //supplier
 Route::prefix('suppliers')->group(function () {
@@ -26,13 +19,7 @@ Route::prefix('suppliers')->group(function () {
     Route::delete('delete/{id}', [SupplierController::class, 'delete'])->name('suppliers.delete');
 });
 
-//category
-Route::prefix('categories')->group(function () {
-    Route::get('', [CategoryController::class, 'index'])->name('categories.index');
-    Route::match(['get', 'post'], 'create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::match(['get', 'put'], 'update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
-});
+
 
 Route::prefix('promotions')->group(function () {
     Route::get('', [PromotionController::class, 'index'])->name('promotions.index');
@@ -40,4 +27,10 @@ Route::prefix('promotions')->group(function () {
     Route::match(['get', 'post'], 'create', [PromotionController::class, 'create'])->name('promotions.create');
     Route::match(['get', 'patch'], 'update/{id}', [PromotionController::class, 'update'])->name('promotions.update');
     Route::get('delete/{id}', [PromotionController::class, 'delete'])->name('promotions.delete');
+});
+
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('show/{id}', [OrderController::class, 'show'])->name('orders.show');
+    // Route::get('update-status/{id}', [OrderController::class, 'updateStatus'])->name('orders.update-status');
 });
