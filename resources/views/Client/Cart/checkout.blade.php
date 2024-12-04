@@ -6,364 +6,270 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="breadcrumb-list">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Checkout Page</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Thanh toán</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- breadcrumb-area end -->
-
-
-    <!-- content-wraper start -->
-    <div class="content-wraper" style="margin-bottom:100px">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="coupon-area">
-                        <!-- coupon-accordion start -->
-                        <div class="coupon-accordion">
-                            <h3>Returning customer? <span class="coupon" id="showlogin">Click here to login</span></h3>
-                            <div class="coupon-content" id="checkout-login">
-                                <div class="coupon-info">
-                                    <p>If you have shopped with us before, please enter your details in the boxes below. If
-                                        you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
-                                    <form action="#">
-                                        <p class="coupon-input form-row-first">
-                                            <label>Username or email <span class="required">*</span></label>
-                                            <input type="text" name="email">
-                                        </p>
-                                        <p class="coupon-input form-row-last">
-                                            <label>password <span class="required">*</span></label>
-                                            <input type="password" name="password">
-                                        </p>
-                                        <div class="clear"></div>
-                                        <p>
-                                            <button type="submit" class="button-login btn" name="login"
-                                                value="Login">Login</button>
-                                            <label class="remember"><input type="checkbox"
-                                                    value="1"><span>Remember</span></label>
-                                        </p>
-                                        <p class="lost-password">
-                                            <a href="#">Lost your password?</a>
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- coupon-accordion end -->
-                        <!-- coupon-accordion start -->
-                        <div class="coupon-accordion">
-                            <h3>Have a coupon? <span class="coupon" id="showcoupon">Click here to enter your code</span>
-                            </h3>
-                            <div class="coupon-content" id="checkout-coupon">
-                                <div class="coupon-info">
-                                    <form action="#">
-                                        <p class="checkout-coupon">
-                                            <input type="text" placeholder="Coupon code">
-                                            <button type="submit" class="btn button-apply-coupon" name="apply_coupon"
-                                                value="Apply coupon">Apply coupon</button>
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- coupon-accordion end -->
-                    </div>
-                </div>
-            </div>
-            <!-- checkout-details-wrapper start -->
-            <div class="checkout-details-wrapper">
+    <div class="content-wraper">
+        <div class="container"> 
+            <form action="{{ route('process') }}" method="POST" id="checkoutForm">
+                @csrf
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <!-- billing-details-wrap start -->
+                    <!-- Thông tin đặt hàng -->
+                    <div class="col-lg-7">
                         <div class="billing-details-wrap">
-                            <form action="#">
-                                <h3 class="shoping-checkboxt-title">Billing Details</h3>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="single-form-row">
-                                            <label>First name <span class="required">*</span></label>
-                                            <input type="text" name="First name">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p class="single-form-row">
-                                            <label>Username or email <span class="required">*</span></label>
-                                            <input type="text" name="Last name">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>Company name</label>
-                                            <input type="text" name="email">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single-form-row">
-                                            <label>Country <span class="required">*</span></label>
-                                            <div class="nice-select wide">
-                                                <select>
-                                                    <option>Select Country...</option>
-                                                    <option>Albania</option>
-                                                    <option>Angola</option>
-                                                    <option>Argentina</option>
-                                                    <option>Austria</option>
-                                                    <option>Azerbaijan</option>
-                                                    <option>Bangladesh</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>Street address <span class="required">*</span></label>
-                                            <input type="text" placeholder="House number and street name" name="address">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <input type="text" placeholder="Apartment, suite, unit etc. (optional)"
-                                                name="address">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>Town / City <span class="required">*</span></label>
-                                            <input type="text" name="address">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>State / County</label>
-                                            <input type="text" name="address">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>Postcode / ZIP <span class="required">*</span></label>
-                                            <input type="text" name="address">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>Phone</label>
-                                            <input type="text" name="address">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row">
-                                            <label>Email address <span class="required">*</span></label>
-                                            <input type="text" name="Email address ">
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="checkout-box-wrap">
-                                            <label><input type="checkbox" id="chekout-box"> Create an account?</label>
-                                            <div class="account-create single-form-row">
-                                                <p>Create an account by entering the information below. If you are a
-                                                    returning customer please login at the top of the page.</p>
-                                                <label class="creat-pass">Create account password <span>*</span></label>
-                                                <input type="password" class="input-text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="checkout-box-wrap">
-                                            <label id="chekout-box-2"><input type="checkbox"> Ship to a different
-                                                address?</label>
-                                            <div class="ship-box-info">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <p class="single-form-row">
-                                                            <label>First name <span class="required">*</span></label>
-                                                            <input type="text" name="First name">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <p class="single-form-row">
-                                                            <label>Username or email <span
-                                                                    class="required">*</span></label>
-                                                            <input type="text" name="Last name ">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="single-form-row">
-                                                            <label>Company name</label>
-                                                            <input type="text" name="email">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="single-form-row">
-                                                            <label>Country <span class="required">*</span></label>
-                                                            <div class="nice-select wide">
-                                                                <select>
-                                                                    <option>Select Country...</option>
-                                                                    <option>Albania</option>
-                                                                    <option>Angola</option>
-                                                                    <option>Argentina</option>
-                                                                    <option>Austria</option>
-                                                                    <option>Azerbaijan</option>
-                                                                    <option>Bangladesh</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="single-form-row">
-                                                            <label>Street address <span class="required">*</span></label>
-                                                            <input type="text"
-                                                                placeholder="House number and street name" name="address">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="single-form-row">
-                                                            <input type="text"
-                                                                placeholder="Apartment, suite, unit etc. (optional)"
-                                                                name="address">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="single-form-row">
-                                                            <label>Town / City <span class="required">*</span></label>
-                                                            <input type="text" name="address">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="single-form-row">
-                                                            <label>State / County</label>
-                                                            <input type="text" name="address">
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="single-form-row">
-                                                            <label>Postcode / ZIP <span class="required">*</span></label>
-                                                            <input type="text" name="address">
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p class="single-form-row m-0">
-                                            <label>Order notes</label>
-                                            <textarea placeholder="Notes about your order, e.g. special notes for delivery." class="checkout-mess" rows="2"
-                                                cols="5"></textarea>
-                                        </p>
+                            <h3 class="shoping-checkboxt-title">Thông tin đặt hàng</h3>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="single-form-row">
+                                        <label>Họ và tên <span class="required">*</span></label>
+                                        <input type="text" name="name" required>
+                                    </p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <p class="single-form-row">
+                                        <label>Số điện thoại <span class="required">*</span></label>
+                                        <input type="tel" name="phone" required>
+                                    </p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <p class="single-form-row">
+                                        <label>Địa chỉ chi tiết <span class="required">*</span></label>
+                                        <input type="text" name="address" placeholder="Số nhà, tên đường" required>
+                                    </p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="single-form-row">
+                                        <label>Tỉnh/Thành phố <span class="required">*</span></label>
+                                        <select name="city" id="city" required>
+                                            <option value="">Chọn Tỉnh/Thành phố</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-lg-4">
+                                    <div class="single-form-row">
+                                        <label>Quận/Huyện <span class="required">*</span></label>
+                                        <select name="district" id="district" required>
+                                            <option value="">Chọn Quận/Huyện</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="single-form-row">
+                                        <label>Phường/Xã <span class="required">*</span></label>
+                                        <select name="ward" id="ward" required>
+                                            <option value="">Chọn Phường/Xã</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <p class="single-form-row">
+                                        <label>Ghi chú đơn hàng</label>
+                                        <textarea name="note" placeholder="Ghi chú về đơn hàng của bạn, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."></textarea>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <!-- billing-details-wrap end -->
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-5">
                         <!-- your-order-wrapper start -->
                         <div class="your-order-wrapper">
-                            <h3 class="shoping-checkboxt-title">Your Order</h3>
+                            <h3 class="shoping-checkboxt-title">Đơn hàng của bạn</h3>
                             <!-- your-order-wrap start-->
                             <div class="your-order-wrap">
                                 <!-- your-order-table start -->
                                 <div class="your-order-table table-responsive">
-                                    <table>
+                                    <table class="table">
                                         <thead>
                                             <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-total">Total</th>
+                                                <th>Sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Thành tiền</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    Vestibulum suscipit <strong class="product-quantity"> × 1</strong>
-                                                </td>
-                                                <td class="product-total">
-                                                    <span class="amount">£165.00</span>
-                                                </td>
+                                            @foreach($cartItems as $item)
+                                            <tr>
+                                                <td>{{ $item['name'] }}</td>
+                                                <td>{{ $item['quantity'] }}</td>
+                                                <td>{{ number_format($item['subtotal']) }}đ</td>
                                             </tr>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    Vestibulum magna <strong class="product-quantity"> × 1</strong>
-                                                </td>
-                                                <td class="product-total">
-                                                    <span class="amount">£50.00</span>
-                                                </td>
-                                            </tr>
+                                            @endforeach   
                                         </tbody>
                                         <tfoot>
-                                            <tr class="cart-subtotal">
-                                                <th>Cart Subtotal</th>
-                                                <td><span class="amount">£215.00</span></td>
+                                            <tr>
+                                                <th colspan="2">Tạm tính</th>
+                                                <td>{{ number_format($cartTotal) }}đ</td>
                                             </tr>
-                                            <tr class="shipping">
-                                                <th>Shipping</th>
-                                                <td>
-                                                    <ul>
-                                                        <li>
-                                                            <input type="radio">
-                                                            <label>
-                                                                Flat Rate: <span class="amount">£7.00</span>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio">
-                                                            <label>Free Shipping:</label>
-                                                        </li>
-                                                        <li></li>
-                                                    </ul>
-                                                </td>
+                                            <tr>
+                                                <th colspan="2">Phí vận chuyển</th>
+                                                <td>{{ number_format($shipping ?? 0)  }}đ</td>
                                             </tr>
-                                            <tr class="order-total">
-                                                <th>Order Total</th>
-                                                <td><strong><span class="amount">£215.00</span></strong>
-                                                </td>
+                                            <tr>
+                                                <th colspan="2">Tổng cộng</th>
+                                                <td><strong>{{ number_format(($cartTotal + ($shipping ?? 0))) }}đ</strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                                 <!-- your-order-table end -->
-
+                            </div>
                                 <!-- your-order-wrap end -->
-                                <div class="payment-method">
-                                    <div class="payment-accordion">
-                                        <!-- ACCORDION START -->
-                                        <h3>Direct Bank Transfer</h3>
-                                        <div class="payment-content">
-                                            <p>Make your payment directly into our bank account. Please use your Order ID as
-                                                the payment reference. Your order won’t be shipped until the funds have
-                                                cleared in our account.</p>
+                            <div class="payment-methods mt-4">
+                                <h4>Phương thức thanh toán</h4>
+                                    <div class="payment-option">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="payment_method" id="cod" value="cod" required>
+                                            <label class="form-check-label" for="cod">
+                                                <strong>Thanh toán khi nhận hàng (COD)</strong>
+                                                <div class="text-muted">Thanh toán bằng tiền mặt khi nhận hàng</div>
+                                            </label>
                                         </div>
-                                        <!-- ACCORDION END -->
-                                        <!-- ACCORDION START -->
-                                        <h3>Cheque Payment</h3>
-                                        <div class="payment-content">
-                                            <p>Please send your cheque to Store Name, Store Street, Store Town, Store State
-                                                / County, Store Postcode.</p>
-                                        </div>
-                                        <!-- ACCORDION END -->
-                                        <!-- ACCORDION START -->
-                                        <h3>PayPal <img src="{{ asset('assets/client/images/icon/4.png') }}" alt="" />
-                                        </h3>
-                                        <div class="payment-content">
-                                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                                                account.</p>
-                                        </div>
-                                        <!-- ACCORDION END -->
                                     </div>
-                                    <div class="order-button-payment">
-                                        <input type="submit" value="Place order" />
+                                    <!-- ACCORDION END -->
+                                    <!-- ACCORDION START -->
+                                    <div class="payment-option">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="payment_method" id="momo" value="momo" required>
+                                            <label class="form-check-label" for="momo">
+                                                <div class="d-flex align-items-center">
+                                                    <strong class="me-2">Thanh toán qua Ví MoMo</strong>
+                                                    <img src="{{ asset('assets/client/images/logo/momo.jpeg') }}" alt="Momo" width="30" height="30" class="rounded">
+                                                </div>
+                                                <div class="text-muted">Thanh toán qua ví điện tử MoMo</div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- your-order-wrapper start -->
-
                             </div>
+                            <div class="order-button-payment mt-4 mb-4">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Đặt hàng</button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- checkout-details-wrapper end -->
+            </form>
         </div>
     </div>
-    <!-- content-wraper end -->
 @endsection
+@push('scripts')
+<script>
+$(document).ready(function() {
+    // Load tỉnh/thành phố
+    $.ajax({
+        url: '/api/provinces',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            console.log('Dữ liệu tỉnh/thành:', response);
+            let html = '<option value="">Chọn Tỉnh/Thành phố</option>';
+            if (Array.isArray(response)) {
+                response.forEach(function(province) {
+                    html += `<option value="${province.name}" data-code="${province.code}">${province.name}</option>`;
+                });
+            }
+            $('#city').html(html);
+        },
+        error: function(xhr, status, error) {
+            console.error('Lỗi khi tải tỉnh/thành:', {
+                status: xhr.status,
+                error: error,
+                response: xhr.responseText
+            });
+        }
+    });
+
+    // Load quận/huyện
+    $('#city').change(function() {
+        let provinceCode = $(this).find(':selected').data('code');
+        if(provinceCode) {
+            $.ajax({
+                url: `/api/districts/${provinceCode}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    let html = '<option value="">Chọn Quận/Huyện</option>';
+                    if (Array.isArray(response)) {
+                        response.forEach(function(district) {
+                            html += `<option value="${district.name}" data-code="${district.code}">${district.name}</option>`;
+                        });
+                    }
+                    $('#district').html(html);
+                    $('#ward').html('<option value="">Chọn Phường/Xã</option>');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Lỗi khi tải quận/huyện:', error);
+                }
+            });
+        }
+    });
+
+    // Load phường/xã
+    $('#district').change(function() {
+        let districtCode = $(this).find(':selected').data('code');
+        if(districtCode) {
+            $.ajax({
+                url: `/api/wards/${districtCode}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    let html = '<option value="">Chọn Phường/Xã</option>';
+                    if (Array.isArray(response)) {
+                        response.forEach(function(ward) {
+                            html += `<option value="${ward.name}">${ward.name}</option>`;
+                        });
+                    }
+                    $('#ward').html(html);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Lỗi khi tải phường/xã:', error);
+                }
+            });
+        }
+    });
+
+
+    // Xử lý form đặt hàng
+    $('#checkoutForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        let paymentMethod = $('input[name="payment_method"]:checked').val();
+        let formData = $(this).serialize();
+
+        if (paymentMethod === 'momo') {
+            // Gọi API tạo thanh toán MoMo
+            $.ajax({
+                url: '{{ route("create_momo_payment") }}',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                timeout: 60000,
+                success: function(response) {
+                    if (response.payUrl) {
+                        // Redirect tới trang thanh toán MoMo
+                        window.location.href = response.payUrl;
+                    } else {
+                        alert('Không thể tạo thanh toán MoMo. Vui lòng thử lại!');
+                    }
+                },
+                error: function(xhr) {
+                    if (textStatus === 'timeout') {
+                        alert('Yêu cầu đã hết thời gian chờ. Vui lòng thử lại!');
+                    } else {
+                        alert('Đã xảy ra lỗi. Vui lòng thử lại!');
+                    }
+                    console.error(xhr);
+                }
+            });
+        } else {
+            // Submit form bình thường cho COD
+            $(this).unbind('submit').submit();
+        }
+    });
+});
+</script>
+@endpush

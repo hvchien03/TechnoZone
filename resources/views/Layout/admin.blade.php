@@ -113,6 +113,7 @@
                                     <li><a href='{{ route('promotions.index') }}'>Giảm giá</a></li>
                                     <li><a href='{{ route('suppliers.index') }}'>Nhà cung cấp</a></li>
                                     <li><a href='{{ route('categories.index') }}'>Loại sản phẩm</a></li>
+                                    <li><a href='{{ route('orders.index') }}'>Đơn hàng</a></li>
                                 </ul>
                             </li>
                             <li class="menu nav-item">
