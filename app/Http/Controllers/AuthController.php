@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -23,15 +22,26 @@ class AuthController extends Controller
         if ($request->isMethod('get')) {
             return view('auth.login');
         }
+    
         // Lấy thông tin đăng nhập từ request
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->role == 'admin') {
-                return redirect()->intended(route('admin.home'));
+    
+        try {
+            // Thử đăng nhập
+            $role = $this->userService->loginUser($credentials);
+    
+            // Chuyển hướng dựa trên vai trò
+            if ($role === 'admin') {
+                return redirect()->route('admin.home')->with('success', 'Đăng nhập thành công!');
+            } elseif ($role === 'user') {
+                return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
             }
-            return redirect()->intended(route('home'));
+        } catch (\Exception $e) {
+            // Xử lý lỗi từ loginUser
+            return redirect()->back()->withInput()->withErrors([
+                'login_error' => $e->getMessage(),
+            ]);
         }
-        return back()->with('error', 'Email or password is incorrect');
     }
 
     public function register(Request $request)
@@ -40,16 +50,37 @@ class AuthController extends Controller
             return view('auth.register');
         }
 
-        $request->validate([
-            'name' => [
-                'required',
-                'regex:/^[\pL\s]+$/u'
+        $request->validate(
+            [
+                'name' => [
+                    'required',
+                    'regex:/^[\pL\s]+$/u'
+                ],
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+                'password_confirmation' => 'required|same:password',
+                'phone' => 'required|numeric|digits:10',
+                'address' => 'required'
             ],
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-            'phone' => 'required|numeric|digits:10',
-            'address' => 'required'
-        ]);
+            [
+                'name.required' => 'Tên không được để trống',
+                'name.regex' => 'Tên không hợp lệ',
+                'email.required' => 'Email không được để trống',
+                'email.email' => 'Email không hợp lệ',
+                'email.unique' => 'Email đã tồn tại',
+                'password.required' => 'Mật khẩu không được để trống',
+                'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+                'password_confirmation.required' => 'Mật khẩu xác nhận không được để trống',
+                'password_confirmation.same' => 'Mật khẩu xác nhận không khớp',
+                'phone.required' => 'Số điện thoại không được để trống',
+                'phone.numeric' => 'Số điện thoại không hợp lệ',
+                'phone.digits' => 'Số điện thoại phải có 10 số',
+                'address.required' => 'Địa chỉ không được để trống'
+            ]
+        );
+
+
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

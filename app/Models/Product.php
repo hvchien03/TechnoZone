@@ -20,6 +20,7 @@ class Product extends Model //sản phẩm
         'stock',// số lượng tồn kho
         'warrantyPeriod',// thời gian bảo hành
         'warrantyPolicy',// chính sách bảo hành
+        'active', //true false
     ];
 
     public function formaterPriceAttribute()

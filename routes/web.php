@@ -7,6 +7,7 @@ use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Client\ServiceController;
+use App\Http\Controllers\Client\OrderHistoryController;
 
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('home');
@@ -19,6 +20,12 @@ Route::prefix('/cart')->group(function () {
     Route::post('/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+});
+
+Route::prefix('/orderHistory')->group(function () {
+    Route::get('', [OrderHistoryController::class, 'index'])->name('orderhistory.index');
+    Route::get('/show/{orderId}', [OrderHistoryController::class, 'show'])-> name('orderhistory.show');
+
 });
 
 Route::prefix('/blog')->group(function () {

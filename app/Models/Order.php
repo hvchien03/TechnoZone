@@ -12,22 +12,7 @@ class Order extends Model //đơn đặt hàng
     protected $connection = 'mongodb';
     public $fillable = [
         'userId',
-        'orders', // 1 người dùng có nhiều đơn đặt hàng
-        // cấu trúc trong orders [
-        //                          {
-        //                              orderId,
-        //                              name,
-        //                              phone,
-        //                              address,
-        //                              products: [
-        //                                              {productId, name, quantity, price}, {}, {}, ...
-        //                                        ],
-        //                              date,
-        //                              total,
-        //                              deliveryStatus,
-        //                              paymentStatus
-        //                           }, {}, {}, ...
-        //]
+        'orders'
     ];
     public function user()
     {
