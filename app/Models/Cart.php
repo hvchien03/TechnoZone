@@ -12,7 +12,8 @@ class Cart extends Model //giỏ hàng
     protected $connection = 'mongodb';
     protected $fillable = [
         'userId',
-        'products'
+        'products',
+        'total'
     ];
     public function user()
     {

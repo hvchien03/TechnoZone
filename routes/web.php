@@ -10,6 +10,7 @@ use App\Http\Controllers\Client\ServiceController;
 use App\Http\Controllers\Client\OrderHistoryController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Middleware\EnsureCartIsAccessedByAuthenticatedUser;
 
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('home');
@@ -17,23 +18,28 @@ Route::prefix('/')->group(function () {
     Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 });
 
-Route::prefix('/cart')->group(function () {
-    Route::get('', [CartController::class, 'index'])->name('cart');
-    Route::post('/add', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
-});
+Route::middleware(EnsureCartIsAccessedByAuthenticatedUser::class)->group(function () {
+    Route::prefix('/cart')->group(function () {
+        Route::get('', [CartController::class, 'index'])->name('cart');
+        Route::post('/add', [CartController::class, 'add'])->name('cart.add');
+        Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+        Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+    });
 
-Route::prefix('/orderHistory')->group(function () {
-    Route::get('', [OrderHistoryController::class, 'index'])->name('orderhistory.index');
-    Route::get('/show/{orderId}', [OrderHistoryController::class, 'show'])-> name('orderhistory.show');
+    //checkout
 
-});
+    Route::prefix('/checkout')->group(function () {
+        Route::get('/', [CheckoutController::class, 'index'])->name('index');
+        Route::post('/process', [CheckoutController::class, 'process'])->name('process');
+        Route::get('/success', [CheckoutController::class, 'success'])->name('success');
+        Route::post('/create-momo-payment', [CheckoutController::class, 'createMomoPayment'])->name('create_momo_payment');
+        Route::get('/momo-callback', [CheckoutController::class, 'momoCallback'])->name('momo_callback');
+    });
 
-Route::prefix('/blog')->group(function () {
-    Route::get('', [BlogController::class, 'index'])->name('blog');
-    Route::get('show', [BlogController::class, 'show'])->name('blog.show');
-    // Route::get('show/{id}', [BlogController::class, 'show'])->name('blog.show');
+    Route::prefix('/orderHistory')->group(function () {
+        Route::get('', [OrderHistoryController::class, 'index'])->name('orderhistory.index');
+        Route::get('/show/{orderId}', [OrderHistoryController::class, 'show'])->name('orderhistory.show');
+    });
 });
 
 Route::prefix('/product')->group(function () {
@@ -47,21 +53,9 @@ Route::prefix('/service')->group(function () {
 
 //user
 Route::prefix('/auth')->group(function () {
-    Route::get('', [AuthController::class, 'index'])->name('auth');
     Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register'])->name('register');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-});
-
-
-//checkout
-
-Route::prefix('/checkout')->group(function (){
-    Route::get('/', [CheckoutController::class, 'index'])->name('index');
-    Route::post('/process', [CheckoutController::class, 'process'])->name('process');
-    Route::get('/success', [CheckoutController::class, 'success'])->name('success');
-    Route::post('/create-momo-payment', [CheckoutController::class, 'createMomoPayment'])->name('create_momo_payment');
-    Route::get('/momo-callback', [CheckoutController::class, 'momoCallback'])->name('momo_callback');
 });
 
 //api province
