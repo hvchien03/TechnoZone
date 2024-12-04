@@ -25,10 +25,10 @@
                         <!-- login-register-tab-list start -->
                         <div class="login-register-tab-list nav">
                             <a href="{{ route('login') }}">
-                                <h4> login </h4>
+                                <h4> Đăng nhập </h4>
                             </a>
                             <a class="active" href="{{ route('register') }}">
-                                <h4> register </h4>
+                                <h4> Đăng ký </h4>
                             </a>
                         </div>
                         <!-- login-register-tab-list end -->
@@ -42,7 +42,7 @@
                                                 @error('name')
                                                     <span class="text-danger float-end">{{ $message }}</span>
                                                 @enderror
-                                                <input type="text" name="name" placeholder="Name"
+                                                <input type="text" name="name" placeholder="Họ và tên"
                                                     value="{{ old('name') }}">
                                                 @error('email')
                                                     <span class="text-danger float-end">{{ $message }}</span>
@@ -52,28 +52,28 @@
                                                 @error('password')
                                                     <span class="text-danger float-end">{{ $message }}</span>
                                                 @enderror
-                                                <input type="password" name="password" placeholder="Password"
+                                                <input type="password" name="password" placeholder="Mật khẩu"
                                                     value="{{ old('password') }}">
                                                 @error('password_confirmation')
                                                     <span class="text-danger float-end">{{ $message }}</span>
                                                 @enderror
                                                 <input type="password" name="password_confirmation"
-                                                    placeholder="Confirm Password"
+                                                    placeholder="Nhập lại mật khẩu"
                                                     value="{{ old('password_confirmation') }}">
                                                 @error('phone')
                                                     <span class="text-danger float-end">{{ $message }}</span>
                                                 @enderror
-                                                <input type="text" name="phone" placeholder="Phone"
+                                                <input type="text" name="phone" placeholder="Số điện thoại"
                                                     value="{{ old('phone') }}">
                                                 @error('address')
                                                     <span class="text-danger float-end">{{ $message }}</span>
                                                 @enderror
-                                                <input type="text" name="address" placeholder="Address"
+                                                <input type="text" name="address" placeholder="Địa chỉ"
                                                     value="{{ old('address') }}">
                                             </div>
                                             <div class="button-box">
                                                 <button class="register-btn btn"
-                                                    type="submit"><span>Register</span></button>
+                                                    type="submit"><span>Đăng ký</span></button>
                                             </div>
                                         </form>
                                     </div>
