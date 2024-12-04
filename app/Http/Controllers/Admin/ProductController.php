@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function update($id)
     {
         if (request()->isMethod('get')) {
-            $product = $this->productService->getProductById($id);
+            $product = $this->productService->findProductById($id);
             $cate = $this->categoryService->getAllCate();
             $supp = $this->supplierService->getAllSupplier();
             return view('Admin.Product.update', compact('product', 'cate', 'supp'));

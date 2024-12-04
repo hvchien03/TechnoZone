@@ -6,7 +6,7 @@
             <div>
                 <ul class="flex flex-wrap items-center text-sm font-semibold space-x-2.5">
                     <li class="flex items-center space-x-2.5 text-gray hover:text-dark dark:hover:text-white duration-300">
-                        <a href="javaScript:;">Tables</a>
+                        <a href="javaScript:;">Quản trị</a>
                         <svg class="text-gray/50" width="8" height="10" viewBox="0 0 8 10" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.5"
@@ -14,25 +14,25 @@
                                 fill="currentColor" />
                         </svg>
                     </li>
-                    <li>List Product</li>
+                    <li>Danh sách sản phẩm</li>
                 </ul>
             </div>
         </div>
         <div class="grid grid-cols-1 gap-5">
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
                 <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.create') }}"
-                        class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Add
-                        new product</a></h2>
+                        class="">Thêm
+                        sản phẩm mới</a></h2>
                 <div class="overflow-auto">
                     <table class="min-w-[640px] w-full product-table">
                         <thead>
                             <tr class="text-left">
-                                <th>product</th>
-                                <th>category</th>
-                                <th>supplier</th>
-                                <th>stock</th>
-                                <th>price</th>
-                                <th>action</th>
+                                <th>Sản phẩm</th>
+                                <th>Loại</th>
+                                <th>Hãng</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@
                                     <td>
                                         <div class="flex items-center gap-2.5">
                                             <img src="{{ asset('images_upload/' . $product->image) }}"
-                                                class="w-[50px] rounded-full" alt="">
+                                                class="w-[50px] rounded-lg" alt="">
                                             <div class="flex-1 max-w-[300px] truncate">
                                                 <p class="line-clamp-1 truncate">{{ $product->productName }}</p>
                                                 <p class="text-gray">Id: #{{ $product->id }}</p>
@@ -52,11 +52,11 @@
                                     <td>{{ $product->Supplier->supplierName }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td><span
-                                            class="bg-success text-white font-bold text-xs py-2 px-3 rounded-full">{{ $product->formaterPriceAttribute() }}</span>
+                                            class="text-red-500 font-bold text-xs py-2 px-3">{{ $product->formaterPriceAttribute() }}</span>
                                     </td>
                                     <td>
                                         <a x-data="modals"
-                                            class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">
+                                            class="hover:underline btn bg-success border border-success rounded-lg text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">
                                             <button type="button" @click="toggle">Show</button>
                                             <div class="fixed inset-0 bg-dark/90 dark:bg-white/5 backdrop-blur-sm z-[99999] hidden overflow-y-auto"
                                                 :class="open && '!block'">
@@ -137,8 +137,8 @@
                                                             </div>
                                                             <div class="flex justify-end items-center gap-4">
                                                                 <button type="button"
-                                                                    class="btn border text-danger border-transparent rounded-md transition-all duration-300 hover:text-white hover:bg-danger bg-danger/10"
-                                                                    @click="toggle">Close</button>
+                                                                    class="btn border text-danger border-transparent rounded-lg transition-all duration-300 hover:text-white hover:bg-danger bg-danger/10"
+                                                                    @click="toggle">Đóng</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -146,10 +146,10 @@
                                             </div>
                                         </a>
                                         <a href="{{ route('products.update', ['id' => $product->id]) }}"
-                                            class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Edit</a>
+                                            class="hover:underline btn bg-success border border-success rounded-lg text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Chỉnh sửa</a>
                                         <a href="javascript:void(0);" onclick="confirmDelete('{{ $product->id }}')"
-                                            class="btn-delete hover:underline btn bg-danger border border-danger rounded-full text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
-                                            Delete
+                                            class="btn-delete hover:underline btn bg-danger border border-danger rounded-lg text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
+                                            Xoá
                                         </a>
 
                                     </td>
@@ -167,14 +167,14 @@
 <script>
     function confirmDelete(id) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: 'This action cannot be undone!',
-            icon: 'warning',
+            title: 'Bạn có chắc chắn muốn xoá sản phẩm này?',
+            text: 'Bạn sẽ không thể hoàn tác hành động này!',
+            icon: 'Cảnh báo',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
+            confirmButtonText: 'Xoá',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteProduct(id);
