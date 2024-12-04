@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 
 class OrderHistoryController extends Controller
 {
@@ -29,9 +30,30 @@ class OrderHistoryController extends Controller
      */
     public function show($orderId)
     {
-        // Tìm đơn hàng theo ID
-        $order = Order::where('orderId', $orderId)->first();
+        // Tìm tài liệu có chứa orderId trong mảng orders
+        $document = Order::where('orders.orderId', $orderId)->first();
+    
+        if (!$document) {
+            abort(404, 'Đơn hàng không tồn tại.');
+        }
+    
+        // Lọc để lấy đúng đơn hàng từ mảng orders
+        $order = collect($document->orders)->firstWhere('orderId', $orderId);
 
-         return redirect()-> route('orderhistory.show', compact('order'));
+        if (!$order) {
+            abort(404, 'Chi tiết đơn hàng không tồn tại.');
+        }
+        // Thêm thuộc tính image vào từng sản phẩm trong mảng products
+        $products = collect($order['products'])->map(function ($product) {
+            $productModel = Product::find($product['productId']);
+            $product['image'] = $productModel ? $productModel->image : null;
+            return $product;
+        });
+
+        // Cập nhật lại mảng products trong order
+        $order['products'] = $products;
+    
+        return view('client.orderhistory.show', compact('order'));
     }
+    
 }
