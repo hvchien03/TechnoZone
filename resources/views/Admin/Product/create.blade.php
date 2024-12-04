@@ -41,7 +41,7 @@
                                 </label>
                                 <div class="mt-2">
                                     <input type="number" min="0" class="w-full rounded-sm h-8 pl-1 form-input"
-                                        placeholder="" name="stock" value="{{ old('stock') }}">
+                                        placeholder="" name="stock" value="0" readonly>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,8 @@
             </div>
             <div class="w-full p-3">
                 <button type="submit"
-                    class="btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Tạo mới</button>
+                    class="btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Tạo
+                    mới</button>
             </div>
         </form>
     </div>

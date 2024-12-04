@@ -71,10 +71,9 @@
                                             </div>
                                         </div>
                                     </li> --}}
-                                    <!
-                                    -- Currency End -->
-                                    <!-- Language Start -->
-                                    {{-- <li class="language list-inline-item">
+                                    <! -- Currency End -->
+                                        <!-- Language Start -->
+                                        {{-- <li class="language list-inline-item">
                                         <div class="btn-group">
                                             <button class="dropdown-toggle"><img src="{{ asset('assets/client/images/icon/la-1.jpg') }}"
                                     alt=""> English <i class="fa fa-angle-down"></i></button>
@@ -88,29 +87,31 @@
                                     </div>
                             </div>
                             </li> --}}
-                                    <!-- Language End -->
-                                    <!-- Sanguage Start -->
-                                    <li class="setting-top list-inline-item">
-                                        <div class="btn-group">
-                                            <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Tài khoản
-                                                <i class="fa fa-angle-down"></i></button>
-                                            <div class="dropdown-menu">
-                                                <ul>
-                                                    <li><a href="{{ route('auth') }}">Thông tin người dùng</a></li>
-                                                    <li><a href="#">Đơn hàng</a></li>
-                                                    <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn hàng</a>
-                                                    @auth
-                                                        <!-- Khi người dùng đã đăng nhập -->
-                                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
-                                                    @else
-                                                        <!-- Khi người dùng chưa đăng nhập -->
-                                                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
-                                                    @endauth
-                                                </ul>
+                                        <!-- Language End -->
+                                        <!-- Sanguage Start -->
+                                        <li class="setting-top list-inline-item">
+                                            <div class="btn-group">
+                                                <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Tài
+                                                    khoản
+                                                    <i class="fa fa-angle-down"></i></button>
+                                                <div class="dropdown-menu">
+                                                    <ul>
+                                                        <li><a href="{{ route('auth') }}">Thông tin người dùng</a></li>
+                                                        <li><a href="#">Đơn hàng</a></li>
+                                                        <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn
+                                                                hàng</a>
+                                                            @auth
+                                                                <!-- Khi người dùng đã đăng nhập -->
+                                                            <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                                                        @else
+                                                            <!-- Khi người dùng chưa đăng nhập -->
+                                                            <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                                        @endauth
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <!-- Sanguage End -->
+                                        </li>
+                                        <!-- Sanguage End -->
                                 </ul>
                             </div>
                         </div>
@@ -178,8 +179,10 @@
                                     <div class="trigger-search"><i class="fa fa-search"></i> <span>Tìm kiếm</span>
                                     </div>
                                     <div class="search-box main-search-active">
-                                        <form action="#" class="search-box-inner">
-                                            <input type="text" placeholder="Search our catalog">
+                                        <form action="{{ route('product') }}" method="GET"
+                                            class="search-box-inner search-form">
+                                            <input type="text" id="search" name="key"
+                                                value="{{ request('key', '') }}" placeholder="Tìm kiếm sản phẩm....">
                                             <button class="search-btn" type="submit"><i
                                                     class="fa fa-search"></i></button>
                                         </form>
@@ -317,108 +320,7 @@
 
 
         <!-- Modal Algemeen Uitgelicht start -->
-        <div class="modal fade modal-wrapper" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="modal-inner-area row">
-                            <div class="col-lg-5 col-md-6 col-sm-6">
-                                <!-- Product Details Left -->
-                                <div class="product-details-left">
-                                    <div class="product-details-images slider-navigation-1">
-                                        <div class="lg-image">
-                                            <img src="{{ asset('assets/client/images/product/1.jpg') }}"
-                                                alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="{{ asset('assets/client/images/product/2.jpg') }}"
-                                                alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="{{ asset('assets/client/images/product/3.jpg') }}"
-                                                alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="{{ asset('assets/client/images/product/5.jpg') }}"
-                                                alt="product image">
-                                        </div>
-                                    </div>
-                                    <div class="product-details-thumbs slider-thumbs-1">
-                                        <div class="sm-image"><img
-                                                src="{{ asset('assets/client/images/product/1.jpg') }}"
-                                                alt="product image thumb"></div>
-                                        <div class="sm-image"><img
-                                                src="{{ asset('assets/client/images/product/2.jpg') }}"
-                                                alt="product image thumb"></div>
-                                        <div class="sm-image"><img
-                                                src="{{ asset('assets/client/images/product/3.jpg') }}"
-                                                alt="product image thumb"></div>
-                                        <div class="sm-image"><img
-                                                src="{{ asset('assets/client/images/product/4.jpg') }}"
-                                                alt="product image thumb"></div>
-                                    </div>
-                                </div>
-                                <!--// Product Details Left -->
-                            </div>
 
-                            <div class="col-lg-7 col-md-6 col-sm-6">
-                                <div class="product-details-view-content">
-                                    <div class="product-info">
-                                        <h2>Healthy Melt</h2>
-                                        <div class="price-box">
-                                            <span class="old-price">$70.00</span>
-                                            <span class="new-price">$76.00</span>
-                                            <span class="discount discount-percentage">Save 5%</span>
-                                        </div>
-                                        <p>100% cotton double printed dress. Black and white striped top and orange high
-                                            waisted skater skirt bottom. Lorem ipsum dolor sit amet, consectetur
-                                            adipisicing elit. quibusdam corporis, earum facilis et nostrum dolorum
-                                            accusamus similique eveniet quia pariatur.</p>
-                                        <div class="product-variants">
-                                            <div class="produt-variants-size">
-                                                <label>Size</label>
-                                                <select class="form-control-select">
-                                                    <option value="1" title="S" selected="selected">S
-                                                    </option>
-                                                    <option value="2" title="M">M</option>
-                                                    <option value="3" title="L">L</option>
-                                                </select>
-                                            </div>
-                                            <div class="produt-variants-color">
-                                                <label>Color</label>
-                                                <ul class="color-list">
-                                                    <li><a href="#" class="orange-color active"></a></li>
-                                                    <li><a href="#" class="paste-color"></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="single-add-to-cart">
-                                            <form action="#" class="cart-quantity">
-                                                <div class="quantity">
-                                                    <label>Quantity</label>
-                                                    <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" value="1"
-                                                            type="text">
-                                                        <div class="dec qtybutton"><i class="fa fa-angle-down"></i>
-                                                        </div>
-                                                        <div class="inc qtybutton"><i class="fa fa-angle-up"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button class="add-to-cart" type="submit">Add to cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Modal Algemeen Uitgelicht end -->
 
 

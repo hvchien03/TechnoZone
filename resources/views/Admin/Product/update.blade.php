@@ -48,7 +48,7 @@
                                 </label>
                                 <div class="mt-2">
                                     <input type="number" min="0" class="w-full rounded-sm h-8 pl-1 form-input"
-                                        placeholder="" name="stock" value="{{ old('stock', $product->stock) }}">
+                                        placeholder="" name="stock" value="{{ old('stock', $product->stock) }}" readonly>
                                 </div>
                             </div>
                         </div>

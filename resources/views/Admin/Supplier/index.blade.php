@@ -21,7 +21,8 @@
         <div class="grid grid-cols-1 gap-5">
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
                 <h2 class="text-base font-semibold mb-4"><a href="{{ route('suppliers.create') }}"
-                        class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Thêm nhà cung cấp mới</a></h2>
+                        class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Thêm
+                        nhà cung cấp mới</a></h2>
                 <div class="overflow-auto">
                     <table class="min-w-[640px] w-full supplier-table">
                         <thead>
@@ -113,7 +114,8 @@
                                             </div>
                                         </a>
                                         <a href="{{ route('suppliers.update', ['id' => $supplier->id]) }}"
-                                            class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Chỉnh sửa</a>
+                                            class="hover:underline btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Chỉnh
+                                            sửa</a>
                                         <a href="javascript:void(0);" onclick="confirmDelete('{{ $supplier->id }}')"
                                             class="btn-delete hover:underline btn bg-danger border border-danger rounded-full text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
                                             Xoá

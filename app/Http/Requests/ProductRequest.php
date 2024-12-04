@@ -38,6 +38,7 @@ class ProductRequest extends FormRequest
             'stock' => 'required|integer|min:0',
             'warrantyPeriod' => 'required|integer|min:1',
             'warrantyPolicy' => 'required|string',
+            'active'=> 'active', //true false
         ];
     }
 }
