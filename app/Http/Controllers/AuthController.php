@@ -22,15 +22,26 @@ class AuthController extends Controller
         if ($request->isMethod('get')) {
             return view('auth.login');
         }
+    
         // Lấy thông tin đăng nhập từ request
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->role == 'admin') {
-                return redirect()->intended(route('admin.home'));
+    
+        try {
+            // Thử đăng nhập
+            $role = $this->userService->loginUser($credentials);
+    
+            // Chuyển hướng dựa trên vai trò
+            if ($role === 'admin') {
+                return redirect()->route('admin.home')->with('success', 'Đăng nhập thành công!');
+            } elseif ($role === 'user') {
+                return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
             }
-            return redirect()->intended(route('home'));
+        } catch (\Exception $e) {
+            // Xử lý lỗi từ loginUser
+            return redirect()->back()->withInput()->withErrors([
+                'login_error' => $e->getMessage(),
+            ]);
         }
-        return back()->with('error', 'Email or password is incorrect');
     }
 
     public function register(Request $request)

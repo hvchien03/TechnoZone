@@ -97,7 +97,14 @@
                                                 <ul>
                                                     <li><a href="{{ route('auth') }}">Thông tin người dùng</a></li>
                                                     <li><a href="#">Đơn hàng</a></li>
-                                                    <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                                    <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn hàng</a>
+                                                    @auth
+                                                        <!-- Khi người dùng đã đăng nhập -->
+                                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                                                    @else
+                                                        <!-- Khi người dùng chưa đăng nhập -->
+                                                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                                    @endauth
                                                 </ul>
                                             </div>
                                         </div>
