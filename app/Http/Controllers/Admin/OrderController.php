@@ -47,6 +47,7 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request, $orderId)
     {
+        
         try {
             $request->validate([
                 'deliveryStatus' => 'required|in:Processing,Shipped,Delivered,Cancelled'
@@ -58,8 +59,7 @@ class OrderController extends Controller
                     '$set' => [
                         'orders.$[order].deliveryStatus' => $request->deliveryStatus,
                         // Update payment status if cancelled
-                        ...$request->deliveryStatus === 'Cancelled' ? 
-                            ['orders.$[order].paymentStatus' => 'Cancelled'] : []
+                        'orders.$[order].paymentStatus' => $request->deliveryStatus === 'Cancelled' ? 'Cancelled' : 'Success'
                     ]
                 ],
                 [

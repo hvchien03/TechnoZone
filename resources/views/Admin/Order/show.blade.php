@@ -81,7 +81,7 @@
         <h6 class="text-lg font-semibold mb-4">Cập nhật trạng thái</h6>
         <form action="{{route('orders.updateStatus', $orderDetail['orderId'])}}" method="POST" class="flex gap-4 items-center">
             @csrf
-            <select name="status" class="form-select rounded-lg border-gray-300 dark:border-gray-600">
+            <select name="deliveryStatus" class="form-select rounded-lg border-gray-300 dark:border-gray-600">
                 <option value="Processing" {{ $orderDetail['deliveryStatus'] === 'Processing' ? 'selected' : '' }}>Đang xử lý</option>
                 <option value="Shipped" {{ $orderDetail['deliveryStatus'] === 'Shipped' ? 'selected' : '' }}>Đang giao hàng</option>
                 <option value="Delivered" {{ $orderDetail['deliveryStatus'] === 'Delivered' ? 'selected' : '' }}>Đã giao hàng</option>
@@ -119,8 +119,8 @@
                     <tr>
                         <td class="px-6 py-4 text-center whitespace-nowrap">{{ $product['productId'] }}</td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">{{ $product['quantity'] }}</td>
-                        <td class="px-6 py-4 text-right whitespace-nowrap">{{ number_format($product['price']) }}đ</td>
-                        <td class="px-6 py-4 text-right whitespace-nowrap">{{ number_format($product['quantity'] * $product['price']) }}đ</td>
+                        <td class="px-6 py-4 text-center whitespace-nowrap">{{ number_format($product['price']) }}đ</td>
+                        <td class="px-6 py-4 text-center whitespace-nowrap">{{ number_format($product['quantity'] * $product['price']) }}đ</td>
                     </tr>
                     @endforeach
                 </tbody>
