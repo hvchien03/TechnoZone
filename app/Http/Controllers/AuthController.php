@@ -17,23 +17,19 @@ class AuthController extends Controller
         $this->userService = $_userService;
     }
 
-    public function index(){
-        return view('auth.index');
-    }
-
     public function login(Request $request)
     {
         if ($request->isMethod('get')) {
             return view('auth.login');
         }
-    
+
         // Lấy thông tin đăng nhập từ request
         $credentials = $request->only('email', 'password');
-    
+
         try {
             // Thử đăng nhập
             $role = $this->userService->loginUser($credentials);
-    
+
             // Chuyển hướng dựa trên vai trò
             if ($role === 'admin') {
                 return redirect()->route('admin.home')->with('success', 'Đăng nhập thành công!');

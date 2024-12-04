@@ -90,22 +90,25 @@
                                         <!-- Language End -->
                                         <!-- Sanguage Start -->
                                         <li class="setting-top list-inline-item">
+                                            @auth
+                                                {{ Auth::User()->name }}
+                                            @endauth
                                             <div class="btn-group">
                                                 <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Tài
                                                     khoản
                                                     <i class="fa fa-angle-down"></i></button>
                                                 <div class="dropdown-menu">
                                                     <ul>
-                                                        <li><a href="{{ route('auth') }}">Thông tin người dùng</a></li>
-                                                        <li><a href="#">Đơn hàng</a></li>
-                                                        <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn
-                                                                hàng</a>
-                                                            @auth
-                                                                <!-- Khi người dùng đã đăng nhập -->
+                                                        @auth
+                                                            <!-- Khi người dùng đã đăng nhập -->
+                                                            <li><a href="#">Đơn hàng</a></li>
+                                                            <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn
+                                                                    hàng</a>
                                                             <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                                         @else
                                                             <!-- Khi người dùng chưa đăng nhập -->
                                                             <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                                            <li><a href="{{ route('register') }}">Đăng ký</a></li>
                                                         @endauth
                                                     </ul>
                                                 </div>
@@ -140,21 +143,6 @@
                                     <ul>
                                         <li class="active"><a href="{{ route('home') }}">Trang chủ</a>
                                         </li>
-                                        {{-- <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
-                                            <ul class="mega-menu">
-                                                <li><a href="{{ route('product') }}">Khám phá Mac</a>
-                                                    <ul>
-                                                        <li><a href="#">MacBook Air</a></li>
-                                                        <li><a href="#">MacBook Pro</a></li>
-                                                        <li><a href="#">iMac</a></li>
-                                                        <li><a href="#">Mac mini</a></li>
-                                                        <li><a href="#">Mac Studio</a></li>
-                                                        <li><a href="#">Mac Pro</a></li>
-                                                        <li><a href="#">Màn hình</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li> --}}
                                         <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub-menu">
                                                 <li><a href="#">MacBook Air</a></li>
@@ -167,7 +155,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('contact') }}">Liên hệ</a></li>
-                                        <li><a href="">Dịch vụ</a></li>
+                                        <li><a href="{{ route('service') }}">Dịch vụ</a></li>
                                     </ul>
                                 </nav>
                             </div>

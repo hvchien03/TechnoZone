@@ -13,7 +13,10 @@ class CartController extends Controller
     public function index()
     {
         $products = Product::all();
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $cart = Cart::where('userId', Auth::id())->first();
+        if (!$cart) {
+            return view('client.cart.notAvailable');
+        }
         return view('client.cart.index', compact('cart', 'products'));
     }
     public function add(Request $request)
@@ -24,20 +27,20 @@ class CartController extends Controller
             'quantity' => $request->quantity,
             'price' => $pro->price
         ];
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        $cart = Cart::firstOrCreate(['userId' => Auth::id()]);
         $cart->addToCart($product);
         return redirect()->route('cart');
     }
     //kiểm tra funtion remove và removeFromCart trong model
     public function remove(Request $request)
     {
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $cart = Cart::where('userId', Auth::id())->first();
         $cart->removeFromCart($request->product_id);
         return redirect()->route('cart');
     }
     public function updateQuantity(Request $request)
     {
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $cart = Cart::where('userId', Auth::id())->first();
         $cart->updateQuantity($request->product_id, $request->quantity);
         return redirect()->route('cart');
     }

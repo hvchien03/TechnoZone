@@ -41,20 +41,25 @@
                                                         src="{{ asset('images_upload/' . $products->find($item['product_id'])->image) }}"
                                                         alt="" width="100px"></a>
                                             </td>
-                                            <td class="plantmore-product-name"><a href="#">{{$products->find($item['product_id'])->productName}}</a></td>
-                                            <td class="plantmore-product-price"><span class="amount">{{ number_format($item['price'], 0, '.', ',') }} VND</span></td>
+                                            <td class="plantmore-product-name"><a
+                                                    href="#">{{ $products->find($item['product_id'])->productName }}</a>
+                                            </td>
+                                            <td class="plantmore-product-price"><span
+                                                    class="amount">{{ number_format($item['price'], 0, '.', ',') }}
+                                                    VND</span></td>
                                             <td class="plantmore-product-quantity">
-                                                <form action="{{ route('cart.updateQuantity') }}" method="post">
+                                                {{ $item['quantity'] }}
+                                                {{-- <form action="{{ route('cart.updateQuantity') }}" method="post">
                                                     @csrf
                                                     <input type="text" hidden name="product_id"
                                                         value="{{ $item['product_id'] }}">
                                                     <input value="{{ $item['quantity'] }}" name="quantity" min="1">
                                                     <input class="submit btn" name="update_cart" value="Cập nhật"
                                                         type="submit">
-                                                </form>
+                                                </form> --}}
                                             </td>
                                             <td class="product-subtotal"><span
-                                                    class="amount">{{ number_format($item['price'], 0, '.', ',') }}
+                                                    class="amount">{{ number_format($item['price'] * $item['quantity'], 0, '.', ',') }}
                                                     VND</span></td>
                                             <td class="plantmore-product-remove">
                                                 <form action="{{ route('cart.remove') }}" method="post">
@@ -74,7 +79,7 @@
                                 <div class="coupon-all">
 
                                     <div class="coupon2">
-                                        <a href="{{route('product')}}" class="btn continue-btn">Tiếp tục mua sắm</a>
+                                        <a href="{{ route('product') }}" class="btn continue-btn">Tiếp tục mua sắm</a>
                                     </div>
 
                                     <div class="coupon">
@@ -90,9 +95,9 @@
                                 <div class="cart-page-total">
                                     <h2>Thành tiền</h2>
                                     <ul>
-                                        <li>Tính tổng tiền rồi hiển thị ở đây</li>
+                                        <li class="text-red-600">{{ number_format($cart->total, 0, '.', ',') }} VND</li>
                                     </ul>
-                                    <a href="{{ Route('checkout') }}" class="proceed-checkout-btn">Thanh toán</a>
+                                    <a href="{{ Route('index') }}" class="proceed-checkout-btn">Thanh toán</a>
                                 </div>
                             </div>
                         </div>
