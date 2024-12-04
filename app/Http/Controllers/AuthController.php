@@ -17,6 +17,10 @@ class AuthController extends Controller
         $this->userService = $_userService;
     }
 
+    public function index(){
+        return view('auth.index');
+    }
+
     public function login(Request $request)
     {
         if ($request->isMethod('get')) {

@@ -21,7 +21,7 @@
 
     <!-- Style Css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/assets/css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 
     <title>@yield('title')</title>
 
@@ -199,12 +199,14 @@
                             </button>
                         </div>
                         <div class="max-w-[180px] md:max-w-[350px] flex-1">
-                            <form class="hidden min-[420px]:block w-full">
+                            <form class="hidden min-[420px]:block w-full search-form" action="{{ url()->current() }}"
+                                method="GET">
                                 <div class="relative">
-                                    <input type="text" id="search"
+                                    <input type="text" id="search" name="key"
+                                        value="{{ request('key', '') }}"
                                         class="form-input ps-10 h-[42px] dark:border-lightgray/20 dark:text-white dark:bg-lightgray/10 border-2 border-gray/10 bg-gray/[8%] rounded-full text-sm text-dark placeholder:text-lightgray/80 focus:ring-0 focus:border-primary/80 focus:outline-0"
                                         placeholder="Tìm kiếm..." required="">
-                                    <button type="button" class="absolute inset-y-0 left-3 flex items-center">
+                                    <button type="submit" class="absolute inset-y-0 left-3 flex items-center">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_87_857)">

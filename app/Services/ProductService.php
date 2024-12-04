@@ -17,7 +17,7 @@ class ProductService
         }
         return $product;
     }
-
+    
     public function createProduct($data)
     {
         $product = new Product();
@@ -29,6 +29,7 @@ class ProductService
         $product->stock = (int)$data['stock'];
         $product->warrantyPeriod = (int)$data['warrantyPeriod'];
         $product->warrantyPolicy = $data['warrantyPolicy'];
+        $product->active = false;
         // xử lý image
         $file_name = time() . '.' . $data['image']->getClientOriginalExtension();
         $data['image']->move(public_path('images_upload'), $file_name);
@@ -52,11 +53,17 @@ class ProductService
     public function deleteProduct($id)
     {
         $product = $this->findProductById($id);
-        return $product->delete();
+        if($product->stock == 0 && $product->active == 0){
+            return $product->delete();
+        }
     }
 
     public function getAllProducts()
     {
         return Product::all();
+    }
+    public function getQuery()
+    {
+        return Product::query();
     }
 }

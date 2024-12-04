@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Services\ProductService;
 use App\Services\CategoryService;
 use App\Services\SupplierService;
+use App\Traits\SearchTraits;
 
 class ProductController extends Controller
 {
     protected $productService;
     protected $categoryService;
     protected $supplierService;
+
+    use SearchTraits;
     public function __construct(ProductService $_productService, CategoryService $_categoryService, SupplierService $_supplierService)
     {
         $this->productService = $_productService;
@@ -21,7 +24,11 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = $this->productService->getAllProducts();
+        $key = request()->query('key', '');
+        $productsQuery = $this->productService->getQuery();
+        
+        // Áp dụng tìm kiếm
+        $products = $this->applySearch($productsQuery, $key, columns: ['productName', 'configuration'])->paginate(10);
         return view('client.product.index', compact("products"));
     }
     public function show($id)

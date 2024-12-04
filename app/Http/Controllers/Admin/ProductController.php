@@ -7,12 +7,14 @@ use App\Http\Requests\ProductRequest;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use App\Services\SupplierService;
+use App\Traits\SearchTraits;
 
 class ProductController extends Controller
 {
     protected $productService;
     protected $categoryService;
     protected $supplierService;
+    use SearchTraits;
     public function __construct(ProductService $_productService, CategoryService $_categoryService, SupplierService $_supplierService)
     {
         $this->productService = $_productService;
@@ -21,8 +23,13 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = $this->productService->getAllProducts();
-        return view('admin.product.index', compact('products'));
+        $key = request()->query('key', '');
+        $productsQuery = $this->productService->getQuery();
+        
+        // Áp dụng tìm kiếm
+        $products = $this->applySearch($productsQuery, $key, ['productName', 'configuration'])->paginate(10);
+
+        return view('admin.product.index', compact('products', 'key'));
     }
     public function create()
     {
@@ -48,9 +55,16 @@ class ProductController extends Controller
             $cate = $this->categoryService->getAllCate();
             $supp = $this->supplierService->getAllSupplier();
             return view('Admin.Product.update', compact('product', 'cate', 'supp'));
-        } else if (request()->isMethod('put')) {
+        } 
+        else if (request()->isMethod('put')) 
+        {
             $request = app(ProductRequest::class);
             $data = $request->validated();
+            
+            if (isset($data['stock']) && $data['stock'] > 0) {
+                $data['active'] = true; // Gán active = true
+            }
+
             try {
                 $product = $this->productService->updateProduct($id, $data);
                 return redirect()->route('products.index')->with('success', 'Product updated successfully!');

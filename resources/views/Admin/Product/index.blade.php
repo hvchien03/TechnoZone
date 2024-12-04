@@ -20,8 +20,7 @@
         </div>
         <div class="grid grid-cols-1 gap-5">
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
-                <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.create') }}"
-                        class="">Thêm
+                <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.create') }}" class="">Thêm
                         sản phẩm mới</a></h2>
                 <div class="overflow-auto">
                     <table class="min-w-[640px] w-full product-table">
@@ -30,8 +29,7 @@
                                 <th>Sản phẩm</th>
                                 <th>Loại</th>
                                 <th>Hãng</th>
-                                <th>Số lượng</th>
-                                <th>Giá</th>
+                                <th class="text-end">Giá</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -50,9 +48,7 @@
                                     </td>
                                     <td>{{ $product->Category->categoryName }}</td>
                                     <td>{{ $product->Supplier->supplierName }}</td>
-                                    <td>{{ $product->stock }}</td>
-                                    <td><span
-                                            class="text-red-500 font-bold text-xs py-2 px-3">{{ $product->formaterPriceAttribute() }}</span>
+                                    <td class="text-end">{{ $product->formaterPriceAttribute() }}
                                     </td>
                                     <td>
                                         <a x-data="modals"
@@ -80,7 +76,8 @@
                                                         </div>
                                                         <div class="p-5 space-y-4">
                                                             <div class="text-lightgray text-sm font-normal">
-                                                                <img src="{{ asset('images_upload/' . $product->image) }}"
+                                                                <img class="img-fluid" style="width: 550px; height: 350px;"
+                                                                    src="{{ asset('images_upload/' . $product->image) }}"
                                                                     alt="Product Image" class="mt-2 w-300 img-fluid">
                                                                 <table
                                                                     class="min-w-[640px] w-full product-table table-striped">
@@ -146,7 +143,8 @@
                                             </div>
                                         </a>
                                         <a href="{{ route('products.update', ['id' => $product->id]) }}"
-                                            class="hover:underline btn bg-success border border-success rounded-lg text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Chỉnh sửa</a>
+                                            class="hover:underline btn bg-success border border-success rounded-lg text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Chỉnh
+                                            sửa</a>
                                         <a href="javascript:void(0);" onclick="confirmDelete('{{ $product->id }}')"
                                             class="btn-delete hover:underline btn bg-danger border border-danger rounded-lg text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]">
                                             Xoá
@@ -157,8 +155,79 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
+
+
+            </div>
+        </div>
+        <style>
+            .pagination {
+                display: flex;
+                /* justify-content: end; */
+                margin-top: 20px;
+                margin-right: 30px;
+            }
+
+            .pagination .pages {
+                display: flex;
+            }
+
+            .pagination .page-item {
+                list-style: none;
+                margin: 0 5px;
+            }
+
+            .page-link {
+                padding: 8px 15px;
+                background-color: #f0f0f0;
+                border: 1px solid #ddd;
+                color: #333;
+                text-decoration: none;
+                border-radius: 50px;
+                font-size: 14px;
+                transition: background-color 0.3s, color 0.3s;
+                display: inline-block;
+                text-align: center;
+            }
+
+            .page-link:hover {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            .page-item.active .page-link {
+                background-color: #007bff;
+                color: white;
+                pointer-events: none;
+            }
+        </style>
+        <div class="pagination">
+            {{-- Previous Page Link --}}
+            <div class="previous">
+                @if ($products->onFirstPage())
+                    <button class="page-link" disabled>« Previous</button>
+                @else
+                    <a href="{{ $products->previousPageUrl() }}" class="page-link">&laquo;
+                        Previous</a>
+                @endif
+            </div>
+
+            {{-- Pagination Elements --}}
+            <div class="pages d-flex flex-row">
+                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                    <div class="page-item {{ $products->currentPage() == $page ? 'active' : '' }}">
+                        <a href="{{ $url }}" class="page-link">{{ $page }}</a>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- Next Page Link --}}
+            <div class="next float-end">
+                @if ($products->hasMorePages())
+                    <a href="{{ $products->nextPageUrl() }}" class="page-link">Next &raquo;</a>
+                @else
+                    <button class="page-link" disabled>Next &raquo;</button>
+                @endif
             </div>
         </div>
     </div>
