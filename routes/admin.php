@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Api\CustomerApi;
+use App\Http\Controllers\Admin\OrderController;
 //admin page
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.home');
 
@@ -59,9 +60,16 @@ Route::prefix('admin')->group(function () {
         Route::post('update', [ServiceController::class, 'update'])->name('admin.service.update');
         Route::post('store', [ServiceController::class, 'store'])->name('admin.service.store');
     });
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('show/{id}', [OrderController::class, 'show'])->name('orders.show');
+        Route::post('{id}/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    });
 });
 
 Route::prefix('api')->group(function () {
     Route::get('customers/search', [CustomerApi::class, 'search'])->name('api.customer.search');
     Route::get('customers/orders', [CustomerApi::class, 'orders'])->name('api.customer.orders');
 });
+
+

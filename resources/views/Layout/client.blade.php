@@ -343,7 +343,8 @@
     <script src="{{ asset('assets/client/js/ajax-mail.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ asset('assets/client/js/main.js') }}"></script>
-
+    <script src="{{ asset('assets/client/js/vendor/jquery-3.5.1.min.js') }}"></script>
+    @stack('scripts')
 
 </body>
 

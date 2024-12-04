@@ -12,7 +12,7 @@ class Order extends Model //đơn đặt hàng
     protected $connection = 'mongodb';
     public $fillable = [
         'userId',
-        'orders'
+        'orders =>array'
     ];
     public function user()
     {
