@@ -45,6 +45,7 @@ Route::middleware(EnsureCartIsAccessedByAuthenticatedUser::class)->group(functio
 Route::prefix('/product')->group(function () {
     Route::get('', [ProductController::class, 'index'])->name('product');
     Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');
+    Route::get('/category/{categoryId}', [ProductController::class, 'showbycategory'])->name('product.category');
 });
 
 Route::prefix('/service')->group(function () {
@@ -56,6 +57,18 @@ Route::prefix('/auth')->group(function () {
     Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register'])->name('register');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+
+
+//checkout
+
+Route::prefix('/checkout')->group(function (){
+    Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/process', [CheckoutController::class, 'process'])->name('process');
+    Route::get('/success', [CheckoutController::class, 'success'])->name('success');
+    Route::post('/create-momo-payment', [CheckoutController::class, 'createMomoPayment'])->name('create_momo_payment');
+    Route::get('/momo-callback', [CheckoutController::class, 'momoCallback'])->name('momo_callback');
 });
 
 //api province

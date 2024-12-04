@@ -345,18 +345,17 @@
                             </div> --}}
                             <style>
                                 .pagination {
-                                    /* display: flex; */
+                                    display: flex;
                                     /* justify-content: end; */
                                     margin-top: 20px;
                                     margin-right: 30px;
                                 }
 
                                 .pagination .pages {
-                                    /* display: flex; */
+                                    display: flex;
                                 }
 
-                                .pagination .page-item {
-                                    list-style: none;
+                                .pagination .item {
                                     margin: 0 5px;
                                 }
 
@@ -366,7 +365,6 @@
                                     border: 1px solid #ddd;
                                     color: #333;
                                     text-decoration: none;
-                                    border-radius: 10px;
                                     font-size: 14px;
                                     transition: background-color 0.3s, color 0.3s;
                                     display: inline-block;
@@ -396,19 +394,19 @@
                                                 {{-- Previous Page Link --}}
                                                 <div class="previous">
                                                     @if ($products->onFirstPage())
-                                                        <button class="page-link" disabled>« Previous</button>
+                                                        <button class="page-link" disabled>« Trở về</button>
                                                     @else
                                                         <a href="{{ $products->previousPageUrl() }}"
                                                             class="page-link">&laquo;
-                                                            Previous</a>
+                                                            Trở về</a>
                                                     @endif
                                                 </div>
 
                                                 {{-- Pagination Elements --}}
-                                                <div class="pages d-flex flex-row">
+                                                <div class="pages d-flex flex-fill">
                                                     @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
                                                         <div
-                                                            class="page-item {{ $products->currentPage() == $page ? 'active' : '' }}">
+                                                            class="{{ $products->currentPage() == $page ? 'active' : '' }} item">
                                                             <a href="{{ $url }}"
                                                                 class="page-link">{{ $page }}</a>
                                                         </div>
@@ -418,10 +416,10 @@
                                                 {{-- Next Page Link --}}
                                                 <div class="next float-end">
                                                     @if ($products->hasMorePages())
-                                                        <a href="{{ $products->nextPageUrl() }}" class="page-link">Next
+                                                        <a href="{{ $products->nextPageUrl() }}" class="page-link">Tiếp
                                                             &raquo;</a>
                                                     @else
-                                                        <button class="page-link" disabled>Next &raquo;</button>
+                                                        <button class="page-link" disabled>Tiếp &raquo;</button>
                                                     @endif
                                                 </div>
                                             </div>

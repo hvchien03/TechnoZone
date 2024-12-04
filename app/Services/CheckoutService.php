@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use MongoDB\BSON\UTCDateTime;
 use App\Models\Order;
-
+use Illuminate\Support\Facades\Auth;
 use function Psy\sh;
 
 class CheckoutService
@@ -28,8 +28,8 @@ class CheckoutService
     {
         try {
             Log::info('Processing checkout', ['data' => $data]);
-            // $userId = auth()->id() ?? 'guest_' . session()->getId();
-            $userId = 'user123';
+            $userId = Auth::id() ?? 'guest_' . session()->getId();
+            // $userId = 'user123';
             // $cartService = app(CartService::class);
             // $cart = $cartService->getContent();
             $cart = $this->cartsCollection->findOne(['userId' => $userId]);
@@ -131,8 +131,8 @@ class CheckoutService
     public function handleMomoCallback($data)
     {
         try {
-            // $userId = auth()->id() ?? 'guest_' . session()->getId();
-            $userId = 'user123';
+            $userId = Auth::id() ?? 'guest_' . session()->getId();
+            // $userId = 'user123';
             $orderId = $data['orderId'];
             $resultCode = $data['resultCode'];
 
