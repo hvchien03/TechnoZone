@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use MongoDB\BSON\UTCDateTime;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 use function Psy\sh;
 
@@ -28,10 +29,7 @@ class CheckoutService
     {
         try {
             Log::info('Processing checkout', ['data' => $data]);
-            // $userId = auth()->id() ?? 'guest_' . session()->getId();
-            $userId = 'user123';
-            // $cartService = app(CartService::class);
-            // $cart = $cartService->getContent();
+            $userId = Auth::id() ?? session()->getId();  
             $cart = $this->cartsCollection->findOne(['userId' => $userId]);
             if (empty($cart['products'])) {
                 throw new \Exception('Cart is empty');
@@ -89,22 +87,6 @@ class CheckoutService
                         'paymentUrl' => $paymentResult['payUrl'] ?? null
                     ]; 
                 }
-                // 
-                // if (isset($paymentResult['resultCode']) && $paymentResult['resultCode'] !== 0) {
-                //     // Update only the paymentResult for failed payment
-                    
-                //     $this->ordersCollection->updateOne(
-                //         ['userId' => $userId, 'orders.orderId' => $orderId],
-                //         ['$set' => ['orders.$.paymentResult' => $paymentResult, 'orders.$.paymentStatus' => 'Failed']],
-                //         ['upsert' => false]
-                //     );
-
-                //     return [
-                //         'success' => false,
-                //         'orderId' => $orderId,
-                //         'message' => $paymentResult['message'] ?? 'Payment failed'
-                //     ];
-                // }  
             }
             else if($data['payment_method'] === 'cod') {
                 $this->ordersCollection->updateOne(
@@ -131,7 +113,7 @@ class CheckoutService
     public function handleMomoCallback($data)
     {
         try {
-            // $userId = auth()->id() ?? 'guest_' . session()->getId();
+            $userId = Auth::id() ?? session()->getId();  
             $userId = 'user123';
             $orderId = $data['orderId'];
             $resultCode = $data['resultCode'];

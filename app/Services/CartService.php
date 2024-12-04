@@ -27,12 +27,8 @@ class CartService
     public function getContent()
     {
         try {
-            // $userId = Auth::id() ?? session()->getId();
-            // Log::info('Getting cart for user:', ['userId' => $userId]);
-            $userId = 'user123';
-
+            $userId = Auth::id() ?? session()->getId();
             
-            // Sử dụng Cart model thay vì truy cập collection trực tiếp
             $cart = Cart::where('userId', $userId)->first();
             Log::info('Cart data:', ['cart' => $cart]);
             
@@ -42,10 +38,10 @@ class CartService
             }
             
             $mappedProducts = collect($cart->products)->map(function ($product) {
-                $productDetails = Product::find($product['productId'] ?? null);
+                $productDetails = Product::find($product['product_id'] ?? null);
                 return [
-                    'id' => $product['productId'] ?? '',
-                    'name' => $productDetails->name ?? '',
+                    'id' => $product['product_id'] ?? '',
+                    'name' => $productDetails->productName ?? '',
                     'price' => (float) ($product['price'] ?? 0),
                     'quantity' => (int) ($product['quantity'] ?? 0),
                     'image' => $product['image'] ?? '',
@@ -63,7 +59,7 @@ class CartService
     }
     public function clear(){
         try {
-            $userId = 'user123';/*Auth::id() ?? 'guest_' . session()->getId();*/
+            $userId = Auth::id() ?? 'guest_' . session()->getId();
             Cart::where('userId', $userId)->delete();
         } catch (\Exception $e) {
             Log::error('Error clearing cart: ' . $e->getMessage());
