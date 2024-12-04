@@ -2,13 +2,13 @@
 @section('title', 'Add New Product')
 @section('content')
     <div class="w-full bg-gray-200 rounded-sm">
-        <p class="text-center mt-10 text-3xl py-8">Add new product</p>
+        <p class="text-center mt-10 text-3xl py-8">Thêm sản phẩm mới</p>
         <form class="form mt-10" action="{{ route('products.create') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="flex">
                 <div class="w-1/2 p-3 border-2 border-lightgray/10 p-5 rounded-lg">
                     <div class="h-20 bg-white dark:bg-dark dark:border-gray/20 ">
-                        <label for="name" class="text-base font-semibold mb-4">Product name
+                        <label for="name" class="text-base font-semibold mb-4">Tên sản phẩm
                             @if ($errors->has('productName'))
                                 <span
                                     class="text-red-500 text-danger float-right">{{ $errors->first('productName') }}</span>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="flex h-20">
                         <div class="w-1/2 pr-2">
-                            <label for="price" class="text-base font-semibold mb-4">Price
+                            <label for="price" class="text-base font-semibold mb-4">Giá
                                 @if ($errors->has('price'))
                                     <span class="text-red-500 text-danger float-right">{{ $errors->first('price') }}</span>
                                 @endif
@@ -33,7 +33,7 @@
                         </div>
                         <div class="w-1/2 pl-2">
                             <div class="h-20">
-                                <label for="stock" class="text-base font-semibold mb-4">Stock
+                                <label for="stock" class="text-base font-semibold mb-4">Số lượng
                                     @if ($errors->has('stock'))
                                         <span
                                             class="text-red-500 text-danger float-right">{{ $errors->first('stock') }}</span>
@@ -49,7 +49,7 @@
                     <div class="flex h-20">
                         <div class="w-1/2 pr-2">
                             <div class="h-20">
-                                <label for="file_upload" class="text-base font-semibold mb-4">Image
+                                <label for="file_upload" class="text-base font-semibold mb-4">Hình ảnh
                                     @if ($errors->has('image'))
                                         <span
                                             class="text-red-500 text-danger float-right">{{ $errors->first('image') }}</span>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="w-1/2 pl-2">
-                            <label for="warrantyPeriod" class="text-base font-semibold mb-4">Warranty period
+                            <label for="warrantyPeriod" class="text-base font-semibold mb-4">Thời hạn bảo hành
                                 @if ($errors->has('warrantyPeriod'))
                                     <span
                                         class="text-red-500 text-danger float-right">{{ $errors->first('warrantyPeriod') }}</span>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="flex h-20">
                         <div class="w-1/2 pr-2">
-                            <label for="brand_id" class="text-base font-semibold mb-4">Supplier
+                            <label for="brand_id" class="text-base font-semibold mb-4">Nhà cung cấp
                                 @if ($errors->has('supplierId'))
                                     <span
                                         class="text-red-500 text-danger float-right">{{ $errors->first('supplierId') }}</span>
@@ -92,7 +92,7 @@
                             </label>
                             <div class="mt-2">
                                 <select class="w-full rounded-sm h-10 form-select" name="supplierId">
-                                    <option value="" selected>Select supplier</option>
+                                    <option value="" selected>Chọn nhà cung cấp</option>
                                     @foreach ($supp as $s)
                                         <option value="{{ $s->id }}">{{ $s->supplierName }}</option>
                                     @endforeach
@@ -101,7 +101,7 @@
                         </div>
                         <div class="w-1/2 pl-2">
                             <div class="h-20">
-                                <label for="category_id" class="text-base font-semibold mb-4">Category
+                                <label for="category_id" class="text-base font-semibold mb-4">Loại sản phẩm
                                     @if ($errors->has('categoryId'))
                                         <span
                                             class="text-red-500 text-danger float-right">{{ $errors->first('categoryId') }}</span>
@@ -109,7 +109,7 @@
                                 </label>
                                 <div class="mt-2">
                                     <select class="w-full rounded-sm h-10 form-select" name="categoryId">
-                                        <option value="" selected>Select Category</option>
+                                        <option value="" selected>Chọn loại sản phẩm</option>
                                         @foreach ($cate as $c)
                                             <option value="{{ $c->id }}">{{ $c->categoryName }}</option>
                                         @endforeach
@@ -121,7 +121,7 @@
                 </div>
                 <div class="w-1/2 p-3 border-2 border-lightgray/10 p-5 rounded-lg">
                     <div class="h-40">
-                        <label for="configuration" class="text-base font-semibold mb-4">Configuration
+                        <label for="configuration" class="text-base font-semibold mb-4">Cấu hình
                             @if ($errors->has('configuration'))
                                 <span
                                     class="text-red-500 text-danger float-right">{{ $errors->first('configuration') }}</span>
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                     <div class="h-40">
-                        <label for="warrantyPolicy" class="text-base font-semibold mb-4">Warranty policy
+                        <label for="warrantyPolicy" class="text-base font-semibold mb-4">Chính sách bảo hành
                             @if ($errors->has('warrantyPolicy'))
                                 <span
                                     class="text-red-500 text-danger float-right">{{ $errors->first('warrantyPolicy') }}</span>
@@ -148,7 +148,7 @@
             </div>
             <div class="w-full p-3">
                 <button type="submit"
-                    class="btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Save</button>
+                    class="btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Tạo mới</button>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@
 @section('title', 'Update Supplier')
 @section('content')
     <div class="w-full bg-gray-200 rounded-sm">
-        <p class="text-center mt-10 text-3xl py-8">Update Supplier</p>
+        <p class="text-center mt-10 text-3xl py-8">Chỉnh sửa nhà cung cấp</p>
         <form class="form mt-10" action="{{ route('suppliers.update', $supplier->_id) }}" method="post"
             enctype="multipart/form-data">
             @csrf
@@ -10,7 +10,7 @@
             <div class="flex">
                 <div class="w-full p-3 border-2 border-lightgray/10 p-5 rounded-lg">
                     <div class="h-20 bg-white dark:bg-dark dark:border-gray/20 ">
-                        <label for="supplierName" class="text-base font-semibold mb-4">Supplier Name
+                        <label for="supplierName" class="text-base font-semibold mb-4">Nhà cung cấp
                             @if ($errors->has('supplierName'))
                                 <span
                                     class="text-red-500 text-danger float-right">{{ $errors->first('supplierName') }}</span>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="h-20 bg-white dark:bg-dark dark:border-gray/20 ">
-                        <label for="hotline" class="text-base font-semibold mb-4">Hotline
+                        <label for="hotline" class="text-base font-semibold mb-4">Số điện thoại
                             @if ($errors->has('hotline'))
                                 <span class="text-red-500 text-danger float-right">{{ $errors->first('hotline') }}</span>
                             @endif
@@ -45,7 +45,7 @@
                     </div>
 
                     <button type="submit"
-                        class="btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Update</button>
+                        class="btn bg-success border border-success rounded-full text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">Lưu</button>
                 </div>
             </div>
         </form>
