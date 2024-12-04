@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Log;
 use MongoDB\BSON\UTCDateTime;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
-
 use function Psy\sh;
 
 class CheckoutService
@@ -114,7 +113,6 @@ class CheckoutService
     {
         try {
             $userId = Auth::id() ?? session()->getId();  
-            $userId = 'user123';
             $orderId = $data['orderId'];
             $resultCode = $data['resultCode'];
 

@@ -41,4 +41,17 @@ class ProductController extends Controller
         ->take(4);
         return view('client.product.show', compact('product', 'listProduct'));
     }
+    public function showbycategory($categoryId)
+    {
+        // Lấy sản phẩm theo categoryId
+        $category = $this->categoryService->getCateById($categoryId);
+        
+        if (!$category) {
+            abort(404, 'Danh mục không tồn tại.');
+        }
+        
+        $products = $this->productService->getProductsByCategory($categoryId);
+
+        return view('client.product.index', compact('category', 'products'));
+    }
 }

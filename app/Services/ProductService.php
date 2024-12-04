@@ -17,7 +17,10 @@ class ProductService
         }
         return $product;
     }
-    
+    public function getProductsByCategory($categoryId)
+    {
+        return Product::where('categoryId', $categoryId)->paginate(10);
+    }
     public function createProduct($data)
     {
         $product = new Product();
