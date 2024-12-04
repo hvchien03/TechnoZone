@@ -18,4 +18,8 @@ class Order extends Model //đơn đặt hàng
     {
         return $this->belongsTo(User::class, 'userId', '_id');
     }
+    public function requests()
+    {
+        return $this->hasMany(Request::class, 'order.orderId');
+    }
 }

@@ -6450,3 +6450,117 @@ body.christmas-body {
 .christmas-body .single-product-wrap .label-product.label-sale {
   background: #B91D23;
 }
+
+.service-policy-area {
+    padding: 60px 0;
+}
+
+.service-title {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.service-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #007bff;
+}
+
+.policy-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.policy-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.policy-icon {
+    font-size: 40px;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.policy-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.policy-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.policy-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.policy-list li i {
+    color: #28a745;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.policy-list li span {
+    flex: 1;
+    line-height: 1.6;
+}
+
+.warranty-contact {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.contact-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.contact-info i {
+    color: #007bff;
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .service-policy-area {
+        padding: 40px 0;
+    }
+
+    .policy-box {
+        margin-bottom: 20px;
+    }
+
+    .service-title {
+        font-size: 28px;
+    }
+}

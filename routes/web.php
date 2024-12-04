@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Client\ServiceController;
 use App\Http\Controllers\Client\OrderHistoryController;
 
 Route::prefix('/')->group(function () {
@@ -36,6 +37,10 @@ Route::prefix('/blog')->group(function () {
 Route::prefix('/product')->group(function () {
     Route::get('', [ProductController::class, 'index'])->name('product');
     Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');
+});
+
+Route::prefix('/service')->group(function () {
+    Route::get('', [ServiceController::class, 'index'])->name('service');
 });
 
 //user
