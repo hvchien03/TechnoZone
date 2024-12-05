@@ -10,6 +10,7 @@ use App\Http\Controllers\Client\ServiceController;
 use App\Http\Controllers\Client\OrderHistoryController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Client\OrderController;
 use App\Http\Middleware\EnsureCartIsAccessedByAuthenticatedUser;
 
 Route::prefix('/')->group(function () {
@@ -39,6 +40,12 @@ Route::middleware(EnsureCartIsAccessedByAuthenticatedUser::class)->group(functio
     Route::prefix('/orderHistory')->group(function () {
         Route::get('', [OrderHistoryController::class, 'index'])->name('orderhistory.index');
         Route::get('/show/{orderId}', [OrderHistoryController::class, 'show'])->name('orderhistory.show');
+    });
+
+    Route::prefix('/order')->group(function () {
+        Route::get('', [OrderController::class, 'index'])->name('order.index');
+        Route::get('/{orderId}', [OrderController::class, 'show'])->name('order.show');
+        Route::post('/{orderId}/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
     });
 });
 

@@ -63,7 +63,7 @@
                                                 <ul>
                                                     @auth
                                                         <!-- Khi người dùng đã đăng nhập -->
-                                                        <li><a href="#">Đơn hàng</a></li>
+                                                        <li><a href="{{route('order.index')}}">Đơn hàng</a></li>
                                                         <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn
                                                                 hàng</a>
                                                         <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
@@ -76,7 +76,6 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <!-- Sanguage End -->
                                 </ul>
                             </div>
                         </div>
