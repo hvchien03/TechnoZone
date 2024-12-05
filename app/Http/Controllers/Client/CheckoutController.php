@@ -35,7 +35,7 @@ class CheckoutController extends Controller
             return view('client.cart.checkout', compact('cartItems', 'cartTotal', 'shipping'));
         } catch (\Exception $e) {
             Log::error('Checkout index error: ' . $e->getMessage());
-            return redirect()->route('checkout')->with('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+            return redirect()->route('index')->with('error', 'Có lỗi xảy ra, vui lòng thử lại!');
         }
     }
 
