@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="breadcrumb-list">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Login Register</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Đăng nhập/đăng ký</li>
                     </ul>
                 </div>
             </div>
@@ -25,10 +25,10 @@
                         <!-- login-register-tab-list start -->
                         <div class="login-register-tab-list nav">
                             <a class="active" href="{{ route('login') }}">
-                                <h4> Login </h4>
+                                <h4> Đăng nhập </h4>
                             </a>
                             <a href="{{ route('register') }}">
-                                <h4> Register </h4>
+                                <h4> Đăng ký </h4>
                             </a>
                         </div>
                         <!-- login-register-tab-list end -->
@@ -40,16 +40,16 @@
                                             @csrf  <!-- Bảo vệ khỏi tấn công CSRF -->
                                             <div class="login-input-box">
                                                 <input type="email" name="email" placeholder="Email" required>
-                                                <input type="password" name="password" placeholder="Password" required>
+                                                <input type="password" name="password" placeholder="Mật khẩu" required>
                                             </div>
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox" name="remember">
-                                                    <label>Remember me</label>
-                                                    <a href="#">Forgot Password?</a>
+                                                    <label>Ghi nhớ tôi</label>
+                                                    {{-- <a href="#">Forgot Password?</a> --}}
                                                 </div>
                                                 <div class="button-box">
-                                                    <button class="login-btn btn" type="submit"><span>Login</span></button>
+                                                    <button class="login-btn btn" type="submit"><span>Đăng nhập</span></button>
                                                 </div>
                                             </div>
                                         </form>

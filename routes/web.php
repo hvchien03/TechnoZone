@@ -59,18 +59,6 @@ Route::prefix('/auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-
-
-//checkout
-
-Route::prefix('/checkout')->group(function (){
-    Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/process', [CheckoutController::class, 'process'])->name('process');
-    Route::get('/success', [CheckoutController::class, 'success'])->name('success');
-    Route::post('/create-momo-payment', [CheckoutController::class, 'createMomoPayment'])->name('create_momo_payment');
-    Route::get('/momo-callback', [CheckoutController::class, 'momoCallback'])->name('momo_callback');
-});
-
 //api province
 Route::prefix('/api')->group(function () {
     Route::get('provinces', [AddressController::class, 'getProvinces'])->name('api.provinces');

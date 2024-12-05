@@ -22,6 +22,8 @@
             <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
                 <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.create') }}" class="">Thêm
                         sản phẩm mới</a></h2>
+                <h2 class="text-base font-semibold mb-4"><a href="{{ route('products.import') }}" class="">Cập nhật số
+                        lượng</a></h2>
                 <div class="overflow-auto">
                     <table class="min-w-[640px] w-full product-table">
                         <thead>
@@ -53,7 +55,7 @@
                                     <td>
                                         <a x-data="modals"
                                             class="hover:underline btn bg-success border border-success rounded-lg text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]">
-                                            <button type="button" @click="toggle">Show</button>
+                                            <button type="button" @click="toggle">Chi tiết</button>
                                             <div class="fixed inset-0 bg-dark/90 dark:bg-white/5 backdrop-blur-sm z-[99999] hidden overflow-y-auto"
                                                 :class="open && '!block'">
                                                 <div class="flex items-center justify-center min-h-screen px-4"
@@ -83,7 +85,7 @@
                                                                     class="min-w-[640px] w-full product-table table-striped">
                                                                     <tbody>
                                                                         <tr class="text-left">
-                                                                            <td>category</td>
+                                                                            <td>Loại sản phẩm</td>
                                                                             <td>
                                                                                 <div class="flex items-center gap-2.5">
                                                                                     <p
@@ -95,7 +97,7 @@
 
                                                                         </tr>
                                                                         <tr class="text-left">
-                                                                            <td>supplier</td>
+                                                                            <td>Nhà cung cấp</td>
                                                                             <td>
                                                                                 <div class="flex items-center gap-2.5">
                                                                                     <p
@@ -107,7 +109,7 @@
 
                                                                         </tr>
                                                                         <tr class="text-left">
-                                                                            <td>stock</td>
+                                                                            <td>Số lượng</td>
                                                                             <td>
                                                                                 <div class="flex items-center gap-2.5">
                                                                                     <p
@@ -118,7 +120,7 @@
 
                                                                         </tr>
                                                                         <tr class="text-left">
-                                                                            <td>price</td>
+                                                                            <td>Giá</td>
                                                                             <td>
                                                                                 <div class="flex items-center gap-2.5">
                                                                                     <p
