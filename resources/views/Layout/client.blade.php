@@ -45,76 +45,38 @@
                                     <li><i class="fa fa-phone"></i> (08)123 456 7890</li>
                                     <li><i class="fa fa-envelope-open-o"></i> technozone@gmail.com</li>
                                 </ul>
-                                {{-- <ul class="link-top">
-                                    <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#" title="Rss"><i class="fa fa-rss"></i></a></li>
-                                    <li><a href="#" title="Google"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#" title="Youtube"><i class="fa fa-youtube"></i></a></li>
-                                    <li><a href="#" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                                </ul> --}}
                             </div>
                         </div>
                         <div class="col-lg-4 order-1 order-lg-2">
                             <div class="top-selector-wrapper">
                                 <ul class="single-top-selector">
-                                    <!-- Currency Start -->
-                                    {{-- <li class="currency list-inline-item">
+                                    <!-- Sanguage Start -->
+                                    <li class="setting-top list-inline-item">
+                                        @auth
+                                            {{ Auth::User()->name }}
+                                        @endauth
                                         <div class="btn-group">
-                                            <button class="dropdown-toggle"> USD $ <i
-                                                    class="fa fa-angle-down"></i></button>
+                                            <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Tài
+                                                khoản
+                                                <i class="fa fa-angle-down"></i></button>
                                             <div class="dropdown-menu">
                                                 <ul>
-                                                    <li><a href="#">Euro €</a></li>
-                                                    <li><a href="#" class="current">USD $</a></li>
+                                                    @auth
+                                                        <!-- Khi người dùng đã đăng nhập -->
+                                                        <li><a href="#">Đơn hàng</a></li>
+                                                        <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn
+                                                                hàng</a>
+                                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                                                    @else
+                                                        <!-- Khi người dùng chưa đăng nhập -->
+                                                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                                        <li><a href="{{ route('register') }}">Đăng ký</a></li>
+                                                    @endauth
                                                 </ul>
                                             </div>
                                         </div>
-                                    </li> --}}
-                                    <! -- Currency End -->
-                                        <!-- Language Start -->
-                                        {{-- <li class="language list-inline-item">
-                                        <div class="btn-group">
-                                            <button class="dropdown-toggle"><img src="{{ asset('assets/client/images/icon/la-1.jpg') }}"
-                                    alt=""> English <i class="fa fa-angle-down"></i></button>
-                                    <div class="dropdown-menu">
-                                        <ul>
-                                            <li><a href="#"><img src="{{ asset('assets/client/images/icon/la-1.jpg') }}"
-                                                        alt=""> English</a></li>
-                                            <li><a href="#"><img src="{{ asset('assets/client/images/icon/la-2.jpg') }}"
-                                                        alt=""> Français</a></li>
-                                        </ul>
-                                    </div>
-                            </div>
-                            </li> --}}
-                                        <!-- Language End -->
-                                        <!-- Sanguage Start -->
-                                        <li class="setting-top list-inline-item">
-                                            @auth
-                                                {{ Auth::User()->name }}
-                                            @endauth
-                                            <div class="btn-group">
-                                                <button class="dropdown-toggle"><i class="fa fa-user-circle-o"></i> Tài
-                                                    khoản
-                                                    <i class="fa fa-angle-down"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <ul>
-                                                        @auth
-                                                            <!-- Khi người dùng đã đăng nhập -->
-                                                            <li><a href="#">Đơn hàng</a></li>
-                                                            <li><a href="{{ route('orderhistory.index') }}">Lịch sử đơn
-                                                                    hàng</a>
-                                                            <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
-                                                        @else
-                                                            <!-- Khi người dùng chưa đăng nhập -->
-                                                            <li><a href="{{ route('login') }}">Đăng nhập</a></li>
-                                                            <li><a href="{{ route('register') }}">Đăng ký</a></li>
-                                                        @endauth
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- Sanguage End -->
+                                    </li>
+                                    <!-- Sanguage End -->
                                 </ul>
                             </div>
                         </div>
@@ -242,43 +204,6 @@
                             <!-- footer-info-area end -->
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            {{-- <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <!-- footer-info-area start -->
-                                    <div class="footer-info-area">
-                                        <div class="footer-title">
-                                            <h3>Products</h3>
-                                        </div>
-                                        <div class="desc_footer">
-                                            <ul>
-                                                <li><a href="#"> Prices drop</a></li>
-                                                <li><a href="#"> New products</a></li>
-                                                <li><a href="#"> Best sales</a></li>
-                                                <li><a href="#"> Contact us</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- footer-info-area end -->
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <!-- footer-info-area start -->
-                                    <div class="footer-info-area">
-                                        <div class="footer-title">
-                                            <h3>Our company</h3>
-                                        </div>
-                                        <div class="desc_footer">
-                                            <ul>
-                                                <li><a href="#">Delivery</a></li>
-                                                <li><a href="#">About us</a></li>
-                                                <li><a href="#">Contact us</a></li>
-                                                <li><a href="#">Sitemap</a></li>
-                                                <li><a href="#">Stores</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- footer-info-area end -->
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <!-- footer-info-area start -->
