@@ -14,7 +14,7 @@ class CategoryService
         }
         return $cate;
     }
-
+    
     public function getAllCate()
     {
         return Category::all();

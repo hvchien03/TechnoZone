@@ -105,7 +105,7 @@ class CheckoutController extends Controller
                            ->with('error', 'Thanh toán thất bại!');
         } catch (\Exception $e) {
             Log::error('Momo callback error: ' . $e->getMessage());
-            return redirect()->route('checkout')
+            return redirect()->route('index')
                            ->with('error', 'Có lỗi xảy ra trong quá trình thanh toán!');
         }
     }

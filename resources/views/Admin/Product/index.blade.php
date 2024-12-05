@@ -205,10 +205,10 @@
             {{-- Previous Page Link --}}
             <div class="previous">
                 @if ($products->onFirstPage())
-                    <button class="page-link" disabled>« Previous</button>
+                    <button class="page-link" disabled>« Trở về</button>
                 @else
                     <a href="{{ $products->previousPageUrl() }}" class="page-link">&laquo;
-                        Previous</a>
+                        Trở về</a>
                 @endif
             </div>
 
@@ -224,9 +224,9 @@
             {{-- Next Page Link --}}
             <div class="next float-end">
                 @if ($products->hasMorePages())
-                    <a href="{{ $products->nextPageUrl() }}" class="page-link">Next &raquo;</a>
+                    <a href="{{ $products->nextPageUrl() }}" class="page-link">Tiếp &raquo;</a>
                 @else
-                    <button class="page-link" disabled>Next &raquo;</button>
+                    <button class="page-link" disabled>Tiếp &raquo;</button>
                 @endif
             </div>
         </div>

@@ -107,13 +107,12 @@
                                         </li>
                                         <li><a href="{{ route('product') }}">Mac <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub-menu">
-                                                <li><a href="#">MacBook Air</a></li>
-                                                <li><a href="#">MacBook Pro</a></li>
-                                                <li><a href="#">iMac</a></li>
-                                                <li><a href="#">Mac mini</a></li>
-                                                <li><a href="#">Mac Studio</a></li>
-                                                <li><a href="#">Mac Pro</a></li>
-                                                <li><a href="#">Màn hình</a></li>
+                                                @foreach ($categoryAllView as $item)
+                                                    <li>
+                                                        <a
+                                                            href="{{ route('product.category', $item->_id) }}">{{ $item->categoryName }}</a>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('contact') }}">Liên hệ</a></li>
