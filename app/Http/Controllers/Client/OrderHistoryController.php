@@ -45,8 +45,9 @@ class OrderHistoryController extends Controller
         }
         // Thêm thuộc tính image vào từng sản phẩm trong mảng products
         $products = collect($order['products'])->map(function ($product) {
-            $productModel = Product::find($product['productId']);
+            $productModel = Product::find($product['product_id']);
             $product['image'] = $productModel ? $productModel->image : null;
+            $product['name'] = $productModel->productName;
             return $product;
         });
 

@@ -256,13 +256,14 @@ $(document).ready(function() {
                         alert('Không thể tạo thanh toán MoMo. Vui lòng thử lại!');
                     }
                 },
-                error: function(xhr) {
+                error: function(xhr, textStatus, error) {
                     if (textStatus === 'timeout') {
+
                         alert('Yêu cầu đã hết thời gian chờ. Vui lòng thử lại!');
                     } else {
                         alert('Đã xảy ra lỗi. Vui lòng thử lại!');
                     }
-                    console.error(xhr);
+                    console.error(xhr.responseText, textStatus, error);
                 }
             });
         } else {

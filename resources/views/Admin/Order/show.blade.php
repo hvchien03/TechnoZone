@@ -82,10 +82,10 @@
         <form action="{{route('orders.updateStatus', $orderDetail['orderId'])}}" method="POST" class="flex gap-4 items-center">
             @csrf
             <select name="deliveryStatus" class="form-select rounded-lg border-gray-300 dark:border-gray-600">
-                <option value="Processing" {{ $orderDetail['deliveryStatus'] === 'Processing' ? 'selected' : '' }}>Đang xử lý</option>
-                <option value="Shipped" {{ $orderDetail['deliveryStatus'] === 'Shipped' ? 'selected' : '' }}>Đang giao hàng</option>
-                <option value="Delivered" {{ $orderDetail['deliveryStatus'] === 'Delivered' ? 'selected' : '' }}>Đã giao hàng</option>
-                <option value="Cancelled" {{ $orderDetail['deliveryStatus'] === 'Cancelled' ? 'selected' : '' }}>Đã hủy</option>
+                <option value="Đang xử lý" {{ $orderDetail['deliveryStatus'] === 'Đang xử lý' ? 'selected' : '' }}>Đang xử lý</option>
+                <option value="Đang vận chuyển" {{ $orderDetail['deliveryStatus'] === 'Đang vận chuyển' ? 'selected' : '' }}>Đang vận chuyển</option>
+                <option value="Đã giao hàng" {{ $orderDetail['deliveryStatus'] === 'Đã giao hàng' ? 'selected' : '' }}>Đã giao hàng</option>
+                <option value="Đã hủy" {{ $orderDetail['deliveryStatus'] === 'Đã hủy' ? 'selected' : '' }}>Đã hủy</option>
             </select>
             <button type="submit" class="btn bg-primary border border-primary text-white rounded-lg hover:bg-primary/85">
                 <i class="bi bi-arrow-clockwise me-2"></i>Cập nhật
@@ -101,7 +101,7 @@
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
                         <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Mã SP
+                            Tên SP
                         </th>
                         <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Số lượng
@@ -116,8 +116,11 @@
                 </thead>
                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach($orderDetail['products'] as $product)
+                    @php
+                        $productDetails = \App\Models\Product::find($product['product_id']);
+                    @endphp
                     <tr>
-                        <td class="px-6 py-4 text-center whitespace-nowrap">{{ $product['productId'] }}</td>
+                        <td class="px-6 py-4 text-center whitespace-nowrap">{{ $productDetails->productName }}</td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">{{ $product['quantity'] }}</td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">{{ number_format($product['price']) }}đ</td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">{{ number_format($product['quantity'] * $product['price']) }}đ</td>

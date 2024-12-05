@@ -2,6 +2,7 @@
 
 namespace App\Services;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class MomoPaymentService
 {
@@ -56,8 +57,18 @@ class MomoPaymentService
             'lang' => 'vi'
         ];
 
+        Log::info('MoMo payment request:', ['data' => $requestData]);
+
         $result = $this->execPostRequest($this->endpoint, json_encode($requestData));
-        return json_decode($result, true);
+        $response = json_decode($result, true);
+
+        Log::info('MoMo payment response:', ['response' => $response]);
+
+        if (!isset($response['payUrl'])) {
+            Log::error('Missing payUrl in MoMo response', ['response' => $response]);
+            throw new \Exception('PaymentUrl không tồn tại trong kết quả thanh toán');
+        }
+        return $response;
     }
 
     protected function execPostRequest($url, $data)

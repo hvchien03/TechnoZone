@@ -56,8 +56,8 @@ class CheckoutService
                 'products' => $products,
                 'total' => $total,
                 'date' => now()->format('Y-m-d'),
-                'deliveryStatus' => $data['payment_method'] === 'cod' ? 'Shipped' : 'Processing',
-                'paymentStatus' => $data['payment_method'] === 'cod' ? 'Pending' : 'Processing',
+                'deliveryStatus' => 'Đang xử lý',
+                'paymentStatus' => $data['payment_method'] === 'cod' ? 'Đang chờ xử lý' : 'Đang xử lý',
                 'note' => $data['note'] ?? ''
             ];
     
@@ -73,7 +73,7 @@ class CheckoutService
                 if (isset($paymentResult['resultCode']) && $paymentResult['resultCode'] === 0) {
                     //Update order with successful payment result
                     $order['paymentResult'] = $paymentResult;
-                    $order['paymentStatus'] = 'Success';
+                    $order['paymentStatus'] = 'Thành công';
 
                     $this->ordersCollection->updateOne(
                         ['userId' => $userId],
@@ -117,7 +117,7 @@ class CheckoutService
             $resultCode = $data['resultCode'];
 
             $updateData = [
-                'paymentStatus' => $resultCode == 0 ? 'Paid' : 'Failed',
+                'paymentStatus' => $resultCode == 0 ? 'Thành công' : 'Thất bại',
                 'paymentResult' => $data
             ];
 

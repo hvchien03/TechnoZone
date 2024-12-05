@@ -43,7 +43,6 @@ class CheckoutController extends Controller
     {
         try {
             $result = $this->checkoutService->processCheckout($request->validated());
-
             if ($request->input('payment_method') === 'momo') {
                 return response()->json([
                     'payUrl' => $result['paymentUrl']

@@ -62,15 +62,15 @@
                                 <td>{{ $orderDetail['date'] }}</td>
                                 <td>
                                     <span class="px-3 py-1 rounded-full text-xs font-medium
-                                        {{ $orderDetail['deliveryStatus'] === 'Processing' ? 'bg-warning/10 text-warning' : 
-                                           ($orderDetail['deliveryStatus'] === 'Shipped' ? 'bg-primary/10 text-primary' : 'bg-success/10 text-success') }}">
+                                        {{ $orderDetail['deliveryStatus'] === 'Đang xử lý' ? 'bg-warning/10 text-warning' : 
+                                           ($orderDetail['deliveryStatus'] === 'Đang vận chuyển' ? 'bg-primary/10 text-primary' : 'bg-success/10 text-success') }}">
                                         {{ $orderDetail['deliveryStatus'] }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="px-3 py-1 rounded-full text-xs font-medium
-                                        {{ $orderDetail['paymentStatus'] === 'Pending' ? 'bg-warning/10 text-warning' : 
-                                           ($orderDetail['paymentStatus'] === 'Failed' ? 'bg-danger/10 text-danger' : 'bg-success/10 text-success') }}">
+                                        {{ $orderDetail['paymentStatus'] === 'Đang chờ xử lý' ? 'bg-warning/10 text-warning' : 
+                                           ($orderDetail['paymentStatus'] === 'Thất bại' ? 'bg-danger/10 text-danger' : 'bg-success/10 text-success') }}">
                                         {{ $orderDetail['paymentStatus'] }}
                                     </span>
                                 </td>

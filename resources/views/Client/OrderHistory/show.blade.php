@@ -46,7 +46,7 @@
         @foreach($order['products'] as $index => $product)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $product['productId'] }}</td>
+                <td>{{ $product['product_id'] }}</td>
                 <td>{{ $product['name'] }}</td>
                 <td style="text-align: center; vertical-align: middle;">
                     @if(!empty($product['image']) && file_exists(public_path('images_upload/' . $product['image'])))

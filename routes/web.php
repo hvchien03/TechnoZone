@@ -10,6 +10,7 @@ use App\Http\Controllers\Client\ServiceController;
 use App\Http\Controllers\Client\OrderHistoryController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Client\OrderController;
 use App\Http\Middleware\EnsureCartIsAccessedByAuthenticatedUser;
 
 Route::prefix('/')->group(function () {
@@ -40,6 +41,12 @@ Route::middleware(EnsureCartIsAccessedByAuthenticatedUser::class)->group(functio
         Route::get('', [OrderHistoryController::class, 'index'])->name('orderhistory.index');
         Route::get('/show/{orderId}', [OrderHistoryController::class, 'show'])->name('orderhistory.show');
     });
+
+    Route::prefix('/order')->group(function () {
+        Route::get('', [OrderController::class, 'index'])->name('order.index');
+        Route::get('/{orderId}', [OrderController::class, 'show'])->name('order.show');
+        Route::post('/{orderId}/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+    });
 });
 
 Route::prefix('/product')->group(function () {
@@ -57,18 +64,6 @@ Route::prefix('/auth')->group(function () {
     Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register'])->name('register');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-});
-
-
-
-//checkout
-
-Route::prefix('/checkout')->group(function (){
-    Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/process', [CheckoutController::class, 'process'])->name('process');
-    Route::get('/success', [CheckoutController::class, 'success'])->name('success');
-    Route::post('/create-momo-payment', [CheckoutController::class, 'createMomoPayment'])->name('create_momo_payment');
-    Route::get('/momo-callback', [CheckoutController::class, 'momoCallback'])->name('momo_callback');
 });
 
 //api province

@@ -50,7 +50,7 @@ class OrderController extends Controller
         
         try {
             $request->validate([
-                'deliveryStatus' => 'required|in:Processing,Shipped,Delivered,Cancelled'
+                'deliveryStatus' => 'required|in:Đang xử lý,Đang vận chuyển,Đã giao hàng,Đã hủy'
             ]);
 
             $result = Order::raw()->updateOne(
@@ -59,7 +59,7 @@ class OrderController extends Controller
                     '$set' => [
                         'orders.$[order].deliveryStatus' => $request->deliveryStatus,
                         // Update payment status if cancelled
-                        'orders.$[order].paymentStatus' => $request->deliveryStatus === 'Cancelled' ? 'Cancelled' : 'Success'
+                        'orders.$[order].paymentStatus' => $request->deliveryStatus === 'Đã hủy' ? 'Đã hủy' : 'Thành công'
                     ]
                 ],
                 [
