@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\Request;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use App\Services\SupplierService;
@@ -25,7 +26,7 @@ class ProductController extends Controller
     {
         $key = request()->query('key', '');
         $productsQuery = $this->productService->getQuery();
-        
+
         // Áp dụng tìm kiếm
         $products = $this->applySearch($productsQuery, $key, ['productName', 'configuration'])->paginate(10);
 
@@ -55,12 +56,10 @@ class ProductController extends Controller
             $cate = $this->categoryService->getAllCate();
             $supp = $this->supplierService->getAllSupplier();
             return view('Admin.Product.update', compact('product', 'cate', 'supp'));
-        } 
-        else if (request()->isMethod('put')) 
-        {
+        } else if (request()->isMethod('put')) {
             $request = app(ProductRequest::class);
             $data = $request->validated();
-            
+
             if (isset($data['stock']) && $data['stock'] > 0) {
                 $data['active'] = true; // Gán active = true
             }
@@ -91,6 +90,29 @@ class ProductController extends Controller
             }
 
             return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function importProduct(Request $request)
+    {
+        if (request()->isMethod('get')) {
+
+
+            $key = request()->query('key', '');
+            $productsQuery = $this->productService->getQuery();
+
+            // Áp dụng tìm kiếm
+            $products = $this->applySearch($productsQuery, $key, ['productName', 'configuration'])->paginate(10);
+
+            return view('admin.product.import', compact('products', 'key'));
+        }
+        if (request()->isMethod('post')) {
+            if ($request->quantity > 0) {
+                $product = $this->productService->findProductById($request->id);
+                $product->stock += $request->quantity;
+                $product->save();
+            }
+            return redirect()->route('products.import');
         }
     }
 }

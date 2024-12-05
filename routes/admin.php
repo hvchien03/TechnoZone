@@ -13,8 +13,10 @@ use App\Http\Controllers\Admin\OrderController;
 //admin page
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.home');
 
-//products
 Route::prefix('admin')->group(function () {
+
+    //products
+    Route::match(['get', 'post'], '/import-products', [ProductController::class, 'importProduct'])->name('products.import');
     Route::prefix('products')->group(function () {
         Route::get('', [ProductController::class, 'index'])->name('products.index');
         Route::match(['get', 'post'], 'create', [ProductController::class, 'create'])->name('products.create');
