@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ProductService;
 use App\Services\PromotionService;
 use App\Http\Requests\PromotionRequest;
+use Illuminate\Http\Request;
 
 class PromotionController extends Controller
 {
@@ -34,7 +35,9 @@ class PromotionController extends Controller
         if (request()->isMethod('get')) {
             $products = $this->productService->getAllProducts();
             return view('admin.promotion.create', compact('products'));
-        } else {
+        }
+
+        if (request()->isMethod('post')) {
             $request = app(PromotionRequest::class);
             $data = $request->validated();
             try {

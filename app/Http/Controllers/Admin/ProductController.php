@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\Request;
+use Illuminate\Http\Request;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use App\Services\SupplierService;
@@ -106,12 +106,13 @@ class ProductController extends Controller
 
             return view('admin.product.import', compact('products', 'key'));
         }
-        // $data = $request->validated();
-        // try {
-        //     $product = $this->productService->importProduct($data);
-        //     return redirect()->route('products.index')->with('success', 'Product imported successfully!');
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with('error', $e->getMessage());
-        // }
+        if (request()->isMethod('post')) {
+            if ($request->quantity > 0) {
+                $product = $this->productService->findProductById($request->id);
+                $product->stock += $request->quantity;
+                $product->save();
+            }
+            return redirect()->route('products.import');
+        }
     }
 }
