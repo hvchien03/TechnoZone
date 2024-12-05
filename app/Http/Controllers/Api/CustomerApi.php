@@ -8,7 +8,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use MongoDB\BSON\ObjectId;
 use App\Models\Product;
-
+use App\Models\Request as RequestModel;
 class CustomerApi extends Controller
 {
     public function search(Request $request)
@@ -49,7 +49,7 @@ class CustomerApi extends Controller
     {
         try {
             $userId = $request->input('userId');
-            $order = Order::where('userId', new ObjectId($userId))->first(); // ke cai thang nay di no bi ngu
+            $order = Order::where('userId', new ObjectId($userId))->first();
 
             if (!$order || empty($order->orders)) {
                 return response()->json([
@@ -59,22 +59,24 @@ class CustomerApi extends Controller
             }
 
             $formattedOrders = collect($order->orders)->map(function($orderItem) {
-                return [
-                    'id' => $orderItem['orderId'],
-                    'date' => \Carbon\Carbon::parse($orderItem['date'])->format('d/m/Y'),
-                    'total' => number_format($orderItem['total'], 0, ',', '.') . ' VNĐ',
-                    'status' => $orderItem['deliveryStatus'],
-                    'products' => collect($orderItem['products'])->map(function($product) {
-                        $productInfo = Product::find($product['productId']);
-                        return [
-                            'productId' => $product['productId'],
-                            'productName' => $productInfo->productName,
-                            'quantity' => $product['quantity'],
-                            'price' => number_format($product['price'], 0, ',', '.') . ' VNĐ'
-                        ];
-                    })
-                ];
-            });
+                if($orderItem['deliveryStatus'] == 'Giao hàng thành công') {
+                    return [
+                            'id' => $orderItem['orderId'],
+                            'date' => \Carbon\Carbon::parse($orderItem['date'])->format('d/m/Y'),
+                            'total' => number_format($orderItem['total'], 0, ',', '.') . ' VNĐ',
+                            'status' => $orderItem['deliveryStatus'],
+                            'products' => collect($orderItem['products'])->map(function($product) {
+                                $productInfo = Product::find($product['productId']);
+                                return [
+                                    'productId' => $product['productId'],
+                                    'productName' => $productInfo->productName,
+                                    'quantity' => $product['quantity'],
+                                    'price' => number_format($product['price'], 0, ',', '.') . ' VNĐ'
+                                ];
+                            })
+                    ];
+                }
+            })->filter();
 
             return response()->json([
                 'success' => true,

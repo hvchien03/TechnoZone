@@ -165,7 +165,8 @@ $(document).ready(function() {
             data: { userId: userId },
             success: function(response) {
                 if (response.success) {
-                    customerOrders = response.orders; // Lưu danh sách đơn hàng
+                    customerOrders = response.orders;
+                    console.log(customerOrders);
                     $('#orderSelect').empty().append('<option hidden selected value="">Chọn đơn hàng</option>');
                     customerOrders.forEach(function(order) {
                         $('#orderSelect').append(
@@ -227,7 +228,7 @@ $(document).ready(function() {
 
         const dateParts = selectedOrder.date.split('/');
         const deliveryDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-        const currentDate = new Date();
+        const currentDate = new Date(Date.now() + 7 * 60 * 60 * 1000);
         const daysDifference = Math.floor((currentDate - deliveryDate) / (1000 * 60 * 60 * 24));
 
         let isValid = true;

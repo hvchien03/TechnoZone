@@ -68,9 +68,6 @@ class ServiceController extends Controller
 
         $request->updateStatus($credentials['status'], $credentials['note']);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Cập nhật trạng thái thành công'
-        ]);
+        return redirect()->route('admin.service.index');
     }
 }
