@@ -97,7 +97,7 @@
                                     <ul>
                                         <li class="text-red-600">{{ number_format($cart->total, 0, '.', ',') }} VND</li>
                                     </ul>
-                                    <a href="{{ Route('index') }}" class="proceed-checkout-btn">Thanh toán</a>
+                                    <a href="{{ Route('checkout') }}" class="proceed-checkout-btn">Thanh toán</a>
                                 </div>
                             </div>
                         </div>
